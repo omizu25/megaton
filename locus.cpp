@@ -39,6 +39,11 @@ CLocus* CLocus::Create()
 //--------------------------------------------------
 CLocus::CLocus()
 {
+	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// ˆÚ“®—Ê
+	m_fWave = 0.0f;								// ”g
+	m_fSpeed = 0.0f;							// ‘¬“x
+	m_fWaveSpeed = 0.0f;						// ”g‚Ì‰ÁZ—Ê
+	m_fWaveWidth = 0.0f;						// ”g‚Ì”{—¦
 }
 
 //--------------------------------------------------
@@ -58,6 +63,15 @@ void CLocus::Init()
 
 	// ƒTƒCƒY‚Ìİ’è
 	CObject3D::SetSize(D3DXVECTOR3(STD_SIZE, STD_SIZE, 0.0f));
+
+	// ‘¬“x‚Ìİ’è
+	m_fSpeed = 1.0f;
+
+	// ”g‚Ì‰ÁZ—Ê
+	m_fWaveSpeed = 0.01f;	
+
+	// ”g‚Ì”{—¦
+	m_fWaveWidth = 1.0f;						
 }
 
 //--------------------------------------------------
@@ -74,6 +88,14 @@ void CLocus::Uninit()
 //--------------------------------------------------
 void CLocus::Update()
 {
+	// ˆÚ“®—Ê‚Ìİ’è
+	m_fWave += m_fWaveSpeed;
+	m_move.x = sinf(m_fWave) * m_fWaveWidth;
+	m_move.y = cosf(0.0f) * m_fSpeed;
+
+	// ˆÚ“®
+	SetPos(GetPos() + m_move);
+
 	// XV
 	CObject3D::Update();
 }
