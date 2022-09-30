@@ -18,6 +18,7 @@
 #include "object2D.h"
 #include "bg.h"
 #include "score.h"
+#include "sound.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -45,6 +46,10 @@ CRanking::~CRanking()
 void CRanking::Init()
 {
 	m_time = 0;
+
+	{// BGM
+		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Result);
+	}
 
 	{// ”wŒi
 		CBG::Create(CTexture::LABEL_NightSky);
@@ -156,6 +161,8 @@ void CRanking::Uninit()
 	}
 
 	// ‘S‚Ä‚Ì‰ð•ú
+	CApplication::GetInstanse()->GetSound()->Stop(CSound::LABEL_BGM_Result);
+
 	CObject::ReleaseAll(false);
 
 	CApplication* pApp = CApplication::GetInstanse();
