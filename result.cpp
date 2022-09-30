@@ -251,5 +251,5 @@ void CResult::Effect()
 	col.b = FloatRandom(1.0f, 0.0f);
 
 	// パーティクル
-	CEffectManager::GetInstanse()->Particle(col);
+	CEffectManager::GetInstanse()->Particle(30.0f);
 }

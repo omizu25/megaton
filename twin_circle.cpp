@@ -11,7 +11,7 @@
 //*****************************************************************************
 #include <assert.h>
 
-#include "pendulum.h"
+#include "twin_circle.h"
 #include "object2D.h"
 #include "renderer.h"
 #include "application.h"
@@ -22,17 +22,17 @@
 // Author : 唐﨑結斗
 // 概要 : 2Dゲージを生成する
 //=============================================================================
-CPendulum * CPendulum::Create(void)
+CTwinCircle * CTwinCircle::Create(void)
 {
 	// オブジェクトインスタンス
-	CPendulum *pPendulum = nullptr;
+	CTwinCircle *pTwinCircle = nullptr;
 
 	// メモリの解放
-	pPendulum = new CPendulum;
+	pTwinCircle = new CTwinCircle;
 
-	if (pPendulum != nullptr)
+	if (pTwinCircle != nullptr)
 	{// 数値の初期化
-		pPendulum->Init();
+		pTwinCircle->Init();
 	}
 	else
 	{// メモリの確保ができなかった
@@ -40,7 +40,7 @@ CPendulum * CPendulum::Create(void)
 	}
 
 	// インスタンスを返す
-	return pPendulum;
+	return pTwinCircle;
 }
 
 //=============================================================================
@@ -48,16 +48,15 @@ CPendulum * CPendulum::Create(void)
 // Author : 唐﨑結斗
 // 概要 : インスタンス生成時に行う処理
 //=============================================================================
-CPendulum::CPendulum(CObject::ECategory cat) : CObject(cat)
+CTwinCircle::CTwinCircle(CObject::ECategory cat) : CObject(cat)
 {
-	pTarget = nullptr;									// ターゲット
-	pPendulum = nullptr;								// 振り子
-	m_pos = D3DXVECTOR3(0.0f,0.0f,0.0f);				// 位置
+	pTarget0 = nullptr;									// ターゲット
+	pTarget1 = nullptr;									// ターゲット1
+	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 大きさ
-	m_movePendulum = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// 振り子の移動量
-	m_wave = D3DXVECTOR2(0.0f,0.0f);					// 波
-	m_nCount = 0;										// カウント
+	m_moveTarget = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// ターゲットの移動量
+	m_wave = D3DXVECTOR2(0.0f, 0.0f);					// 波
 }
 
 //=============================================================================
@@ -65,7 +64,7 @@ CPendulum::CPendulum(CObject::ECategory cat) : CObject(cat)
 // Author : 唐﨑結斗
 // 概要 : インスタンス終了時に行う処理
 //=============================================================================
-CPendulum::~CPendulum()
+CTwinCircle::~CTwinCircle()
 {
 
 }
@@ -75,23 +74,12 @@ CPendulum::~CPendulum()
 // Author : 唐﨑結斗
 // 概要 : 頂点バッファを生成し、メンバ変数の初期値を設定
 //=============================================================================
-void CPendulum::Init()
+void CTwinCircle::Init()
 {
 	// 配置の初期設定
 	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
-
-	// ターゲットオブジェクトの設定
-	pTarget = CObject2D::Create();
-	pTarget->SetPos(m_pos);
-	pTarget->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
-	pTarget->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
-
-	// 振り子オブジェクトの設定
-	pPendulum = CObject2D::Create();
-	pPendulum->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y, m_pos.z));
-	pPendulum->SetSize(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
 }
 
 //=============================================================================
@@ -99,7 +87,7 @@ void CPendulum::Init()
 // Author : 唐﨑結斗
 // 概要 : テクスチャのポインタと頂点バッファの解放
 //=============================================================================
-void CPendulum::Uninit()
+void CTwinCircle::Uninit()
 {
 
 }
@@ -109,17 +97,18 @@ void CPendulum::Uninit()
 // Author : 唐﨑結斗
 // 概要 : 2Dポリゴンの更新を行う
 //=============================================================================
-void CPendulum::Update()
+void CTwinCircle::Update()
 {
-	m_wave.x += 0.05f;
+	m_wave.x += 0.1f;
 	m_wave.y += 0.1f;
 	NormalizeAngle(&m_wave.x);
 	NormalizeAngle(&m_wave.y);
-	m_movePendulum.x = cosf(m_wave.x) * 10.0f;
-	m_movePendulum.y = sinf(m_wave.y) * -10.0f;
+	m_moveTarget.x = sinf(m_wave.x) * 10.0f;
+	m_moveTarget.y = cosf(m_wave.y) * -10.0f;
+
 	// 振り子の移動
-	D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;
-	pPendulum->SetPos(pos);
+	D3DXVECTOR3 pos = pTarget1->GetPos() + m_moveTarget;
+	pTarget1->SetPos(pos);
 }
 
 //=============================================================================
@@ -127,7 +116,7 @@ void CPendulum::Update()
 // Author : 唐﨑結斗
 // 概要 : 2Dポリゴンの描画を行う
 //=============================================================================
-void CPendulum::Draw()
+void CTwinCircle::Draw()
 {
 
 }
@@ -137,16 +126,16 @@ void CPendulum::Draw()
 // Author : 唐﨑結斗
 // 概要 : 位置のメンバ変数に引数を代入
 //=============================================================================
-void CPendulum::SetPos(const D3DXVECTOR3 &pos)
+void CTwinCircle::SetPos(const D3DXVECTOR3 &pos)
 {
 	// 配置の初期設定
 	m_pos = pos;			// 位置
 
 	// ターゲットオブジェクトの設定
-	pTarget->SetPos(m_pos);
+	pTarget1->SetPos(m_pos);
 
 	// 振り子オブジェクトの設定
-	pPendulum->SetPos(m_pos);
+	pTarget1->SetPos(m_pos);
 }
 
 //=============================================================================
@@ -154,16 +143,16 @@ void CPendulum::SetPos(const D3DXVECTOR3 &pos)
 // Author : 唐﨑結斗
 // 概要 : 向きのメンバ変数に引数を代入
 //=============================================================================
-void CPendulum::SetRot(const D3DXVECTOR3 &rot)
+void CTwinCircle::SetRot(const D3DXVECTOR3 &rot)
 {
 	// 配置の初期設定
 	m_rot = rot;				// 向き
 
 	// ターゲットオブジェクトの設定
-	pTarget->SetPos(m_rot);
+	pTarget1->SetPos(m_rot);
 
 	// 振り子オブジェクトの設定
-	pPendulum->SetPos(m_rot);
+	pTarget1->SetPos(m_rot);
 }
 
 //=============================================================================
@@ -171,14 +160,14 @@ void CPendulum::SetRot(const D3DXVECTOR3 &rot)
 // Author : 唐﨑結斗
 // 概要 : 大きさのメンバ変数に引数を代入
 //=============================================================================
-void CPendulum::SetSize(const D3DXVECTOR3 & size)
+void CTwinCircle::SetSize(const D3DXVECTOR3 & size)
 {
 	// 配置の初期設定
 	m_size = size;				// サイズ
 
 	// ターゲットオブジェクトの設定
-	pTarget->SetSize(m_size);
+	pTarget1->SetSize(m_size);
 
 	// 振り子オブジェクトの設定
-	pPendulum->SetSize(m_size);
+	pTarget1->SetSize(m_size);
 }
