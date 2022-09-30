@@ -32,14 +32,21 @@ public:
 	~CLocus() override;	// ƒfƒXƒgƒ‰ƒNƒ^
 
 public:
-	void Init() override;	// ‰Šú‰»
-	void Uninit() override;	// I—¹
-	void Update() override;	// XV
-	void Draw() override;	// •`‰æ
+	void Init() override;															// ‰Šú‰»
+	void Uninit() override;															// I—¹
+	void Update() override;															// XV
+	void Draw() override;															// •`‰æ
+	void SetSpeed(const float fSpeed) { m_fSpeed = fSpeed; }						// ‘¬“x‚Ìİ’è
+	void SetWaveSpeed(const float fWaveSpeed) { m_fWaveSpeed = fWaveSpeed; }		// ”g‚Ì‰ÁZ—Ê‚Ìİ’è
+	void SetWaveWidth(const float fWaveWidth) { m_fWaveWidth = fWaveWidth; }		// ”g‚Ì”{—¦‚Ìİ’è
 
 	/* «ƒƒ“ƒo•Ï”« */
 private:
-	D3DXVECTOR3 m_move;	// ˆÚ“®—Ê
+	D3DXVECTOR3		m_move;				// ˆÚ“®—Ê
+	float			m_fSpeed;			// ‘¬“x
+	float			m_fWave;			// ”g
+	float			m_fWaveSpeed;		// ”g‚Ì‰ÁZ—Ê
+	float			m_fWaveWidth;		// ”g‚Ì”{—¦
 };
 
 #endif // !_LOCUS_H_
