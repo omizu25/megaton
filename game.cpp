@@ -133,7 +133,7 @@ void CGame::Init()
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Game);
 
 	// SE
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Start);
+	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
 }
 
 //--------------------------------------------------
@@ -275,7 +275,7 @@ void CGame::Reset()
 	CObject3D::ReleaseAll(CObject3D::TYPE_EXP);
 
 	// SE
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Start);
+	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
 }
 
 //--------------------------------------------------

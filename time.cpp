@@ -154,8 +154,6 @@ void CTime::Update()
 		// ƒ‚[ƒh‚Ì•ÏX
 		CApplication::GetInstanse()->GetMode()->Change(CMode::MODE_RESULT);
 
-		// SE
-		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_GameClear);
 	}
 }
 
