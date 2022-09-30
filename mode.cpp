@@ -14,6 +14,7 @@
 #include "game.h"
 #include "result.h"
 #include "ranking.h"
+#include "fade.h"
 
 #include <assert.h>
 

@@ -21,6 +21,7 @@ class CSound;
 class CMode;
 class CTexture;
 class CCamera;
+class CFade;
 
 //==================================================
 // 定義
@@ -55,11 +56,12 @@ public:
 	void Uninit();	// 終了
 	void Update();	// 更新
 	void Draw();	// 描画
-	LPDIRECT3DDEVICE9 GetDevice();	// デバイスの取得
-	CSound* GetSound();				// サウンドの情報の取得
-	CMode* GetMode();				// モードの情報の取得
-	CTexture* GetTexture();			// テクスチャの情報の取得
-	CCamera* GetCamera();			// カメラの情報の取得
+	LPDIRECT3DDEVICE9 GetDevice();					// デバイスの取得
+	CSound* GetSound();								// サウンドの情報の取得
+	CMode* GetMode();								// モードの情報の取得
+	CTexture* GetTexture();							// テクスチャの情報の取得
+	CCamera* GetCamera();							// カメラの情報の取得
+	CFade *GetFade() { return m_pFade; }			// フェード
 
 	/* ↓メンバ変数↓ */
 private:
@@ -69,6 +71,7 @@ private:
 	CMode* m_pMode;			// モードの情報
 	CTexture* m_pTexture;	// テクスチャの情報
 	CCamera* m_pCamera;		// カメラの情報
+	CFade *m_pFade;
 };
 
 #endif // !_APPLICATION_H_

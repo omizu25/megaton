@@ -19,6 +19,7 @@
 #include "bg.h"
 #include "score.h"
 #include "sound.h"
+#include "fade.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -196,12 +197,12 @@ void CRanking::Update()
 			break;
 
 		case ESelect::SELECT_RETRY:
-			Change(CMode::MODE_GAME);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_GAME);
 			return;
 			break;
 
 		case ESelect::SELECT_END:
-			Change(CMode::MODE_TITLE);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_TITLE);
 			return;
 			break;
 

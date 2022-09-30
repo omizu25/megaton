@@ -24,6 +24,7 @@
 #include "enemy.h"
 #include "gage_manager.h"
 #include "bg.h"
+#include "fade.h"
 
 #include <assert.h>
 
@@ -134,7 +135,8 @@ void CGame::Update()
 
 		if (m_time >= 120)
 		{
-			Change(MODE_RESULT);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_RESULT);
+			return;
 		}
 	}
 

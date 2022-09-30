@@ -19,6 +19,7 @@
 #include "menu.h"
 #include "sound.h"
 #include "bg.h"
+#include "fade.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -78,7 +79,7 @@ void CResult::Update()
 
 	if (m_time >= 240)
 	{// フェード時間
-		Change(MODE_RANKING);
+		CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_RANKING);
 	}
 
 	// カメラの更新
