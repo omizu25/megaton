@@ -10,6 +10,7 @@
 // インクルード
 //*****************************************************************************
 #include <assert.h>
+#include <math.h>
 
 #include "pendulum.h"
 #include "object2D.h"
@@ -57,7 +58,10 @@ CPendulum::CPendulum(CObject::ECategory cat) : CObject(cat)
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 大きさ
 	m_movePendulum = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// 振り子の移動量
 	m_wave = D3DXVECTOR2(0.0f,0.0f);					// 波
-	m_nCount = 0;										// カウント
+	m_fDistance = FLT_MAX;								// ターゲットとの距離
+	m_fMaxDistance = 0.0f;								// ターゲットとの距離の最大
+	m_nScore = 0;										// スコア
+	m_bAction = true;									// アクションを行うか
 }
 
 //=============================================================================
@@ -92,6 +96,9 @@ void CPendulum::Init()
 	pPendulum = CObject2D::Create();
 	pPendulum->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y, m_pos.z));
 	pPendulum->SetSize(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
+
+	// ディスタンスの最大値
+	m_fMaxDistance = 1.0f / 0.05f * 20.0f;
 }
 
 //=============================================================================
@@ -101,7 +108,8 @@ void CPendulum::Init()
 //=============================================================================
 void CPendulum::Uninit()
 {
-
+	pTarget->Release();
+	pPendulum->Release();
 }
 
 //=============================================================================
@@ -111,15 +119,38 @@ void CPendulum::Uninit()
 //=============================================================================
 void CPendulum::Update()
 {
-	m_wave.x += 0.05f;
-	m_wave.y += 0.1f;
-	NormalizeAngle(&m_wave.x);
-	NormalizeAngle(&m_wave.y);
-	m_movePendulum.x = cosf(m_wave.x) * 20.0f;
-	m_movePendulum.y = sinf(m_wave.y) * -10.0f;
-	// 振り子の移動
-	D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;
-	pPendulum->SetPos(pos);
+	if(m_bAction)
+	{// 移動値の算出
+		m_wave.x += 0.05f;
+		m_wave.y += 0.1f;
+		NormalizeAngle(&m_wave.x);
+		NormalizeAngle(&m_wave.y);
+		m_movePendulum.x = cosf(m_wave.x) * 20.0f;
+		m_movePendulum.y = sinf(m_wave.y) * -10.0f;
+
+		// 振り子の移動
+		D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;
+		pPendulum->SetPos(pos);
+
+		// ディスタンスの設定
+		m_fDistance = pTarget->GetPos().x - pPendulum->GetPos().x;
+
+		if (m_fDistance < 0.0f)
+		{
+			m_fDistance *= -1;
+		}
+
+		pPendulum->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+
+		if (CollisionCircle(pPendulum->GetPos(), pPendulum->GetSize().x * 0.5f, pTarget->GetPos(), pTarget->GetSize().x * 0.5f))
+		{
+			pPendulum->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+		}
+	}
+	else if (!m_bAction)
+	{
+		m_nScore = 100 - (100 * m_fDistance / m_fMaxDistance);
+	}
 }
 
 //=============================================================================

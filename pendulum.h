@@ -42,16 +42,18 @@ public:
 	//--------------------------------------------------------------------
 	// オーバーライド関数
 	//--------------------------------------------------------------------
-	void Init() override;							// 初期化
-	void Uninit() override;							// 終了
-	void Update() override;							// 更新
-	void Draw() override;							// 描画
-	void SetPos(const D3DXVECTOR3 &pos);			// 位置のセッター
-	void SetRot(const D3DXVECTOR3 &rot);			// 向きのセッター
-	void SetSize(const D3DXVECTOR3 &size);			// 大きさのセッター
-	D3DXVECTOR3 GetPos() { return m_pos; }			// 位置のゲッター
-	D3DXVECTOR3 GetRot() { return m_rot; }			// 向きのゲッター
-	D3DXVECTOR3 GetSize() { return m_size; }		// 大きさのゲッター
+	void Init() override;										// 初期化
+	void Uninit() override;										// 終了
+	void Update() override;										// 更新
+	void Draw() override;										// 描画
+	void SetPos(const D3DXVECTOR3 &pos);						// 位置のセッター
+	void SetRot(const D3DXVECTOR3 &rot);						// 向きのセッター
+	void SetSize(const D3DXVECTOR3 &size);						// 大きさのセッター
+	D3DXVECTOR3 GetPos() { return m_pos; }						// 位置のゲッター
+	D3DXVECTOR3 GetRot() { return m_rot; }						// 向きのゲッター
+	D3DXVECTOR3 GetSize() { return m_size; }					// 大きさのゲッター
+	void SetAction(bool bAction) { m_bAction = bAction; }		// アクションの設定
+	int GetScore() { return m_nScore; }							// スコアの取得
 
 private:
 	//--------------------------------------------------------------------
@@ -64,7 +66,10 @@ private:
 	D3DXVECTOR3		m_size;				// 大きさ
 	D3DXVECTOR3		m_movePendulum;		// 振り子の移動量
 	D3DXVECTOR2		m_wave;				// 波
-	int				m_nCount;			// カウント
+	float			m_fDistance;		// ターゲットとの距離
+	float			m_fMaxDistance;		// ターゲットとの距離の最大
+	int				m_nScore;			// スコア
+	bool			m_bAction;			// アクションを行うか
 };
 
 #endif
