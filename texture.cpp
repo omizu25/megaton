@@ -36,7 +36,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Retry.png",		// リトライ
 
 	/* ↓ハッカソン(2022/09/30)用↓ */
-	"data/TEXTURE/TEXT/Hackathon_PressAnyKey.png",	// 何かキーを押してね
+	"data/TEXTURE/TEXT/Hackathon_PressEnter.png",	// Enterを押してね
 	"data/TEXTURE/TEXT/Hackathon_Score.png",		// スコア
 	"data/TEXTURE/TEXT/Hackathon_Ranking.png",		// ランキング
 	"data/TEXTURE/TEXT/Hachathon_GameBg.png",		// ゲーム画面の背景

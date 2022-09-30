@@ -40,7 +40,7 @@ public:
 		LABEL_Retry,			// リトライ
 
 		/* ↓ハッカソン(2022/09/30)用↓ */
-		LABEL_PressAnyKey,	// 何かキーを押してね
+		LABEL_PressEnter,	// Enterを押してね
 		LABEL_Score,		// スコア
 		LABEL_Ranking,		// ランキング
 		LABEL_GameBg,		// ゲーム画面の背景
