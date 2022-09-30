@@ -47,6 +47,9 @@ public:
 		LABEL_NightSky,		// 夜空
 		LABEL_Hanabitutu,	// 花火筒
 		LABEL_Number_0to9,	// 0～9
+		LABEL_Pien_yellow,	// ぴえん(黄)
+		LABEL_Pien_white,	// ぴえん(白)
+		LABEL_Target,		// ターゲット
 
 		LABEL_MAX
 	};
