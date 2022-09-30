@@ -92,12 +92,9 @@ void CGame::Init()
 
 	// BGM
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Game);
-<<<<<<< HEAD
 
 	// SE
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
-=======
->>>>>>> 9d70c4d4a45445a57b76a68a6f52e99fc2cd6074
 }
 
 //--------------------------------------------------
@@ -164,27 +161,6 @@ void CGame::Draw()
 }
 
 //--------------------------------------------------
-<<<<<<< HEAD
-// リセット
-//--------------------------------------------------
-void CGame::Reset()
-{
-	// 敵の全ての解放
-	CObject3D::ReleaseAll(CObject3D::TYPE_ENEMY);
-
-	// 弾の全ての解放
-	CObject3D::ReleaseAll(CObject3D::TYPE_BULLET);
-
-	// EXPの全ての解放
-	CObject3D::ReleaseAll(CObject3D::TYPE_EXP);
-
-	// SE
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
-}
-
-//--------------------------------------------------
-=======
->>>>>>> 9d70c4d4a45445a57b76a68a6f52e99fc2cd6074
 // スコアの取得
 //--------------------------------------------------
 CScore* CGame::GetScore()

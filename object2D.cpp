@@ -39,7 +39,7 @@ CObject2D* CObject2D::Create()
 //--------------------------------------------------
 // デフォルトコンストラクタ
 //--------------------------------------------------
-CObject2D::CObject2D() : CObject(CObject::CATEGORY_2D),
+CObject2D::CObject2D(CObject::ECategory cat) : CObject(cat),
 	m_texture(CTexture::LABEL_NONE),
 	m_pVtxBuff(nullptr),
 	m_pos(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),

@@ -96,7 +96,7 @@ void CTwinCircle::Init()
 	pTarget1->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 
 	// ディスタンスの最大値
-	m_fMaxDistance = 1.0f / 0.1f * 18.0f * 2.0f;
+	m_fMaxDistance = 1.0f / 0.1f * 18.0f / 2.0f;
 }
 
 //=============================================================================
