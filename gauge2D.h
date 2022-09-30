@@ -67,6 +67,7 @@ public:
 	void SetNumber(const float fNumber) { m_fDestNumber = fNumber; }						// 数値の設定
 	void SetCoefficient(const float fCoefficient) { m_fCoefficient = fCoefficient; }		// 減衰係数の設定
 	int GetNumber() { return (int)m_fDestNumber; }
+	void SetChange(bool change, const D3DXVECTOR3 &size);
 
 protected:
 	//--------------------------------------------------------------------
@@ -100,6 +101,7 @@ private:
 	float							m_fNumber;					// 数値
 	float							m_fDestNumber;				// 目的の数値
 	float							m_fCoefficient;				// 減衰係数
+	bool							m_change;
 };
 
 #endif

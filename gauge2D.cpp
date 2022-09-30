@@ -63,6 +63,7 @@ CGauge2D::CGauge2D(CObject::ECategory cat) : CObject(cat)
 	m_fDestNumber = 0.0f;								// 目的の数値
 	m_fCoefficient = 0.0f;								// 減衰係数
 	m_texture = CTexture::LABEL_NONE;					// テクスチャの列挙型
+	m_change = false;
 }
 
 //=============================================================================
@@ -97,6 +98,7 @@ void CGauge2D::Init()
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 向き
 	m_size = D3DXVECTOR3(100.0f, 100.0f, 0.0f);		// 大きさ
 	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);		// カラー
+	m_change = true;
 
 	// 頂点座標の算出
 	SetVtx();
@@ -129,6 +131,11 @@ void CGauge2D::Uninit()
 //=============================================================================
 void CGauge2D::Update()
 {
+	if (!m_change)
+	{
+		return;
+	}
+
 	// 数値の設定
 	float fAdd = (m_fDestNumber - m_fNumber) * m_fCoefficient;
 
@@ -363,3 +370,14 @@ void CGauge2D::SetMaxNumber(const float fMaxNumber)
 	SetGauge();
 }
 
+void CGauge2D::SetChange(bool change, const D3DXVECTOR3& size)
+{
+	// 大きさの設定
+	m_maxSize = D3DXVECTOR3(size.x, size.y, 0.0f);
+	m_size = D3DXVECTOR3(size.x, size.y, 0.0f);
+
+	// 頂点座標などの設定
+	SetVtx();
+
+	m_change = change;
+}
