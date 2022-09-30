@@ -68,6 +68,19 @@ void CGame::Init()
 		CBG::Create(CTexture::LABEL_GameBg);
 	}
 
+	//‰Ô‰Î“›
+	CObject2D* pFireWorkCylinder = CObject2D::Create();	//¶¬
+
+	//ˆÊ’uÝ’è—p
+	float posX = (float)(CApplication::SCREEN_WIDTH * 0.65f);
+	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
+
+	//ŠeŽíÝ’è
+	pFireWorkCylinder->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
+	pFireWorkCylinder->SetSize(D3DXVECTOR3(200.0f, 300.0f, 0.0f));
+	pFireWorkCylinder->SetTexture(CTexture::LABEL_Hanabitutu);
+	pFireWorkCylinder->SetFade(0.0f);
+
 	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
 	float width = (float)CApplication::SCREEN_WIDTH * 0.9f;
 	float height = 0.0f;

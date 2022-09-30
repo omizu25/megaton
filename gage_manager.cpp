@@ -89,37 +89,49 @@ void CGageManager::Init()
 {
 	// ”z’u‚Ì‰Šúİ’è
 	float posX = (float)(CApplication::SCREEN_WIDTH * 0.3f);
-	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.5f);
+	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.7f);
 
 	m_pos = D3DXVECTOR3(posX, posY, 0.0f);			// ˆÊ’u
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// Œü‚«
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);		// ‘å‚«‚³
 
 	{// ƒQ[ƒW˜g
-		float height = 410.0f;	//‚‚³
-		D3DXVECTOR3 size = D3DXVECTOR3(60.0f, height, 0.0f);			// ‘å‚«‚³
-		m_pMax = CGauge2D::Create();
+		m_pMax = CGauge2D::Create();	//¶¬
+
+		//İ’è—p
+		float height = 810.0f;	//‚‚³
+		D3DXVECTOR3 size = D3DXVECTOR3(60.0f, height, 0.0f);	// ‘å‚«‚³
+
+		//Šeíİ’è
 		m_pMax->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + size.y / (height * 0.01f), 0.0f));
 		m_pMax->SetChange(false, size);
 	}
 
 	{// ƒQ[ƒW”wŒi
-		float height = 400.0f;	//‚‚³
-		D3DXVECTOR3 size = D3DXVECTOR3(50.0f, height, 0.0f);			// ‘å‚«‚³
-		m_pFrame = CGauge2D::Create();
+		m_pFrame = CGauge2D::Create();	//¶¬
+
+		//İ’è—p
+		float height = 800.0f;	//‚‚³
+		D3DXVECTOR3 size = D3DXVECTOR3(50.0f, height, 0.0f);	// ‘å‚«‚³
+
+		//Šeíİ’è
 		m_pFrame->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + size.y / (height * 0.01f), 0.0f));
 		m_pFrame->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
 		m_pFrame->SetChange(false, size);
 	}
 
 	{// ƒQ[ƒW
-		m_pGauge2D = CGauge2D::Create();
+		m_pGauge2D = CGauge2D::Create();	//¶¬
 
+		//İ’è—p
 		float height = 200.0f;	//‚‚³
+
+		//Šeíİ’è
 		m_pGauge2D->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + m_size.y / (height * 0.01f), 0.0f));
 		m_pGauge2D->SetSize(D3DXVECTOR3(50.0f, height, 0.0f));
-		m_pGauge2D->SetMaxNumber(100.0f);
+		m_pGauge2D->SetMaxNumber(50.0f);
 		m_pGauge2D->SetCoefficient(1.0f);
+		m_pGauge2D->SetNumber(30.0f);
 		m_end = false;
 	}
 }
