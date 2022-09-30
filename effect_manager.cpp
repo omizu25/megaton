@@ -218,6 +218,8 @@ void CEffectManager::Fireworks(float move)
 		// F‚ÌŒ¸ŽZ‚ð‚µ‚È‚¢
 		pEffect->SetColSubtract(false);
 	}
+
+	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion);
 }
 
 //--------------------------------------------------

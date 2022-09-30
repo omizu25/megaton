@@ -261,6 +261,7 @@ void CGageManager::Update()
 				pLocus->SetSpeed(15.0f);
 				pLocus->SetWaveSpeed(0.4f);
 				pLocus->SetWaveWidth(15.0f);
+				CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion_Before);
 			}
 		}
 		break;

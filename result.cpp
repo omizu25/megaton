@@ -63,6 +63,8 @@ void CResult::Init()
 void CResult::Uninit()
 {
 	// 全ての解放
+	CApplication::GetInstanse()->GetSound()->Stop();
+
 	CObject::ReleaseAll(false);
 
 	CApplication* pApp = CApplication::GetInstanse();
@@ -83,7 +85,11 @@ void CResult::Update()
 	CObject::UpdateAll();
 
 	m_time++;
-
+	if (m_time == 1)
+	{
+		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion_Before);
+	}
+	
 	if (m_time >= 240)
 	{// フェード時間
 		CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_RANKING);
