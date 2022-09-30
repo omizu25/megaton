@@ -79,6 +79,7 @@ void CFade::Init()
 	SetPos(D3DXVECTOR3(640.0f, 360.0f, 0.0f));
 	SetSize(D3DXVECTOR3(1280.0f, 720.0f, 0.0f));
 	SetCol(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	SetKeep(true);
 }
 
 //=============================================================================

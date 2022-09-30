@@ -19,6 +19,7 @@
 #include "bg.h"
 #include "score.h"
 #include "sound.h"
+#include "fade.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -82,11 +83,11 @@ void CRanking::Init()
 	}
 
 	{// ランキング
-		float width = (float)CApplication::SCREEN_WIDTH - 35.0f;
+		float width = (float)CApplication::SCREEN_WIDTH - 150.0f;
 		float height = (float)CApplication::SCREEN_HEIGHT * 0.35f;
 
 		// ランキングの生成
-		m_pRanking = CRankingUI::Create(D3DXVECTOR3(width, height, 0.0f), 40.0f);
+		m_pRanking = CRankingUI::Create(D3DXVECTOR3(width, height, 0.0f), 15.0f);
 	}
 
 	{// ランキングの文字列
@@ -102,7 +103,7 @@ void CRanking::Init()
 	}
 
 	{// 今回のスコア
-		D3DXVECTOR3 size = D3DXVECTOR3(CRankingUI::STD_WIDTH * 2.0f, CRankingUI::STD_HEIGHT * 2.0f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(CRankingUI::STD_WIDTH * 1.5f, CRankingUI::STD_HEIGHT * 1.5f, 0.0f);
 		int score = CRankingUI::Get(-1);
 		int digit = Digit(score);
 		float center = (digit * (size.x * 0.5f)) + (((digit - 1) / 3) * (size.x * 0.25f));
@@ -196,12 +197,12 @@ void CRanking::Update()
 			break;
 
 		case ESelect::SELECT_RETRY:
-			Change(CMode::MODE_GAME);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_GAME);
 			return;
 			break;
 
 		case ESelect::SELECT_END:
-			Change(CMode::MODE_TITLE);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_TITLE);
 			return;
 			break;
 
@@ -211,12 +212,6 @@ void CRanking::Update()
 			break;
 		}
 	}
-
-	float width = (float)CApplication::SCREEN_WIDTH - 35.0f;
-	float height = (float)CApplication::SCREEN_HEIGHT * 0.35f;
-
-	// リセット
-	m_pRanking->Reset(D3DXVECTOR3(width, height, 0.0f), 40.0f, false);
 
 	// カメラの更新
 	CApplication::GetInstanse()->GetCamera()->Update();
