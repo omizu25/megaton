@@ -80,6 +80,16 @@ void CTwinCircle::Init()
 	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
+
+	// ターゲットオブジェクト0の設定
+	pTarget0 = CObject2D::Create();
+	pTarget0->SetPos(m_pos);
+	pTarget0->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
+
+	// ターゲットオブジェクト1の設定
+	pTarget1 = CObject2D::Create();
+	pTarget1->SetPos(m_pos);
+	pTarget1->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 }
 
 //=============================================================================
@@ -103,12 +113,14 @@ void CTwinCircle::Update()
 	m_wave.y += 0.1f;
 	NormalizeAngle(&m_wave.x);
 	NormalizeAngle(&m_wave.y);
-	m_moveTarget.x = sinf(m_wave.x) * 10.0f;
-	m_moveTarget.y = cosf(m_wave.y) * -10.0f;
+	m_moveTarget.x = sinf(m_wave.x) * 18.0f;
+	m_moveTarget.y = cosf(m_wave.y) * 15.0f;
 
 	// 振り子の移動
-	D3DXVECTOR3 pos = pTarget1->GetPos() + m_moveTarget;
-	pTarget1->SetPos(pos);
+	D3DXVECTOR3 pos0 = pTarget0->GetPos() + m_moveTarget;
+	D3DXVECTOR3 pos1 = pTarget1->GetPos() - m_moveTarget;
+	pTarget0->SetPos(pos0);
+	pTarget1->SetPos(pos1);
 }
 
 //=============================================================================
@@ -131,10 +143,10 @@ void CTwinCircle::SetPos(const D3DXVECTOR3 &pos)
 	// 配置の初期設定
 	m_pos = pos;			// 位置
 
-	// ターゲットオブジェクトの設定
-	pTarget1->SetPos(m_pos);
+	// ターゲットオブジェクト0の設定
+	pTarget0->SetPos(m_pos);
 
-	// 振り子オブジェクトの設定
+	// ターゲットオブジェクト1の設定
 	pTarget1->SetPos(m_pos);
 }
 
@@ -147,12 +159,6 @@ void CTwinCircle::SetRot(const D3DXVECTOR3 &rot)
 {
 	// 配置の初期設定
 	m_rot = rot;				// 向き
-
-	// ターゲットオブジェクトの設定
-	pTarget1->SetPos(m_rot);
-
-	// 振り子オブジェクトの設定
-	pTarget1->SetPos(m_rot);
 }
 
 //=============================================================================
