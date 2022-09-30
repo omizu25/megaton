@@ -158,7 +158,7 @@ void CPendulum::Update()
 	}
 	else if (!m_bAction)
 	{
-		m_nScore = (int)(100 - (100 * m_fDistance / m_fMaxDistance));
+		m_nScore = (int)(100.0f - (100.0f * m_fDistance / m_fMaxDistance));
 	}
 }
 

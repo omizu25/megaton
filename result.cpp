@@ -53,7 +53,7 @@ void CResult::Init()
 
 	CLocus *pLocus = CLocus::Create();
 	pLocus->SetPos(D3DXVECTOR3(-50.0f, -500.0f, 0.0f));
-	pLocus->SetLife(30);
+	pLocus->SetLife(35);
 	pLocus->SetSpeed(15.0f);
 	pLocus->SetWaveSpeed(0.4f);
 	pLocus->SetWaveWidth(15.0f);

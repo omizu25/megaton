@@ -90,8 +90,8 @@ CGageManager::~CGageManager()
 void CGageManager::Init()
 {
 	// ”z’u‚Ì‰Šúİ’è
-	float posX = (float)(CApplication::SCREEN_WIDTH * 0.3f);
-	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.7f);
+	float posX = (float)(CApplication::SCREEN_WIDTH * 0.23f);
+	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
 
 	m_pos = D3DXVECTOR3(posX, posY, 0.0f);			// ˆÊ’u
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// Œü‚«
