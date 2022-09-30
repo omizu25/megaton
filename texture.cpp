@@ -20,18 +20,12 @@ const char* CTexture::FILE_NAME[] =
 {// テクスチャのパス
 	"data/TEXTURE/effect.jpg",		// エフェクト
 	"data/TEXTURE/bg000.png",		// 背景
-	"data/TEXTURE/Cursor.png",		// カーソル
-	"data/TEXTURE/Tutorial.png",	// 通常のチュートリアル
 
 	/* ↓テキスト↓ */
 	"data/TEXTURE/TEXT/Number.png",		// 数
 	"data/TEXTURE/TEXT/title.png",		// タイトル
 	"data/TEXTURE/TEXT/rank.png",		// 位
 	"data/TEXTURE/TEXT/Comma.png",		// カンマ
-	"data/TEXTURE/TEXT/Period.png",		// ピリオド
-	"data/TEXTURE/TEXT/Pause.png",		// ポーズ
-	"data/TEXTURE/TEXT/Resume.png",		// 再開
-	"data/TEXTURE/TEXT/Restart.png",	// リスタート
 	"data/TEXTURE/TEXT/End.png",		// 終了
 	"data/TEXTURE/TEXT/Retry.png",		// リトライ
 
@@ -46,6 +40,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Hachathon_Pien_yellow.png",	// ぴえん(黄)
 	"data/TEXTURE/TEXT/Hachathon_Pien_white.png",	// ぴえん(白)
 	"data/TEXTURE/TEXT/Hachathon_Target.png",		// ターゲット
+	"data/TEXTURE/TEXT/Hachathon_Tutorial.png",		// タイミング良くEnterを押そう！
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");

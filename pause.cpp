@@ -66,8 +66,8 @@ void CPause::Init()
 		m_pMenu = CMenu::Create(pos, size, ESelect::SELECT_MAX, 40.0f, true, true);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(ESelect::SELECT_RESUME, CTexture::LABEL_Resume);
-		m_pMenu->SetTexture(ESelect::SELECT_RESTART, CTexture::LABEL_Restart);
+		m_pMenu->SetTexture(ESelect::SELECT_RESUME, CTexture::LABEL_NONE);
+		m_pMenu->SetTexture(ESelect::SELECT_RESTART, CTexture::LABEL_NONE);
 		m_pMenu->SetTexture(ESelect::SELECT_END, CTexture::LABEL_End);
 	}
 
@@ -84,7 +84,7 @@ void CPause::Init()
 		m_pPause->SetSize(D3DXVECTOR3(500.0f, 150.0f, 0.0f));
 
 		// テクスチャの設定
-		m_pPause->SetTexture(CTexture::LABEL_Pause);
+		m_pPause->SetTexture(CTexture::LABEL_NONE);
 
 		// フェードの設定
 		m_pPause->SetFade(0.0f);
