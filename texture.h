@@ -45,6 +45,7 @@ public:
 		LABEL_Ranking,		// ƒ‰ƒ“ƒLƒ“ƒO
 		LABEL_GameBg,		// ƒQ[ƒ€‰æ–Ê‚Ì”wŒi
 		LABEL_NightSky,		// –é‹ó
+		LABEL_Hanabitutu,	// ‰Ô‰Î“›
 
 		LABEL_MAX
 	};
