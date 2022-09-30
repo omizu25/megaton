@@ -97,10 +97,10 @@ void CResult::Update()
 	{
 		if (m_time >= 60)
 		{
-			float move = 15.0f;
+			float move = 1.0f;
 			int score = CRankingUI::Get(-1);
 
-			move += (float)(15 * score / 300);
+			move += (float)(score / 10);
 
 			CEffectManager::GetInstanse()->Fireworks(move);
 			m_fireworks = true;
