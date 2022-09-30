@@ -91,7 +91,6 @@ void CGame::Init()
 // èIóπ
 //--------------------------------------------------
 void CGame::Uninit()
-{	
 {
 	int score = 0;
 
