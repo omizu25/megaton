@@ -15,6 +15,7 @@
 //==================================================
 // 前方宣言
 //==================================================
+class CGauge2D;
 class CObject2D;
 class CPause;
 class CTime;
@@ -58,7 +59,9 @@ private:
 	CTime* m_pTime;			// タイム
 	CScore* m_pScore;		// スコア
 	CScore* m_pBestScore;	// ベストスコア
+	CGauge2D* m_pGauge;		// ゲージ
 	int m_time;	//タイム
+	int m_nGageWave;
 };
 
 #endif // !_GAME_H_

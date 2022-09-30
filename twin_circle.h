@@ -1,12 +1,12 @@
 //=============================================================================
 //
-// 振り子ゲージクラス(pendulum.h)
+// ツインサークルゲージクラス(twin_circle.h)
 // Author : 唐﨑結斗
 // 概要 : 振り子ゲージ生成を行う
 //
 //=============================================================================
-#ifndef _PENDULUM_H_		// このマクロ定義がされてなかったら
-#define _PENDULUM_H_		// 二重インクルード防止のマクロ定義
+#ifndef _TWIN_CIRCLE_H_		// このマクロ定義がされてなかったら
+#define _TWIN_CIRCLE_H_		// 二重インクルード防止のマクロ定義
 
 //*****************************************************************************
 // インクルード
@@ -25,19 +25,19 @@ class CObject2D;
 // Author : 唐﨑結斗
 // 概要 : 振り子ゲージ生成を行うクラス
 //=============================================================================
-class CPendulum : public CObject
+class CTwinCircle : public CObject
 {
 public:
 	//--------------------------------------------------------------------
 	// 静的メンバ関数
 	//--------------------------------------------------------------------
-	static CPendulum *Create(void);				// 振り子ゲージの生成
+	static CTwinCircle *Create(void);				// 振り子ゲージの生成
 
 	//--------------------------------------------------------------------
 	// コンストラクタとデストラクタ
 	//--------------------------------------------------------------------
-	CPendulum(CObject::ECategory cat = CObject::CATEGORY_2D);
-	~CPendulum() override;
+	CTwinCircle(CObject::ECategory cat = CObject::CATEGORY_2D);
+	~CTwinCircle() override;
 
 	//--------------------------------------------------------------------
 	// オーバーライド関数
@@ -62,9 +62,8 @@ private:
 	D3DXVECTOR3		m_pos;				// 位置
 	D3DXVECTOR3		m_rot;				// 向き
 	D3DXVECTOR3		m_size;				// 大きさ
-	D3DXVECTOR3		m_movePendulum;		// 振り子の移動量
+	D3DXVECTOR3		m_moveTarget;		// 振り子の移動量
 	D3DXVECTOR2		m_wave;				// 波
-	int				m_nCount;			// カウント
 };
 
 #endif
