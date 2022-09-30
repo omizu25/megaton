@@ -47,8 +47,6 @@ void CResult::Init()
 		CBG::Create(CTexture::LABEL_NightSky);
 	}
 
-	// BGM
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Result);
 }
 
 //--------------------------------------------------
@@ -65,7 +63,7 @@ void CResult::Uninit()
 	pApp->GetTexture()->ReleaseAll();
 
 	// ’âŽ~
-	pApp->GetSound()->Stop(CSound::LABEL_BGM_Result);
+	pApp->GetSound()->Stop();
 }
 
 //--------------------------------------------------

@@ -78,16 +78,13 @@ void CGame::Init()
 		// スコアの生成
 		m_pScore[i] = CScore::Create(D3DXVECTOR3(width, height, 0.0f), size);
 	}
-	
+
 	{// ゲージマネージャー
 		m_pGageManager = CGageManager::Create();
 	}
 
 	// BGM
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Game);
-
-	// SE
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
 }
 
 //--------------------------------------------------
@@ -102,6 +99,7 @@ void CGame::Uninit()
 		score += m_pScore[i]->Get();
 	}
 
+	
 	// ランキングの設定
 	CRankingUI::Set(score);
 

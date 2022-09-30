@@ -122,7 +122,7 @@ void CMenu::Init(const D3DXVECTOR3& pos, const D3DXVECTOR3& size, int numUse, fl
 		m_pCursor->SetSize(D3DXVECTOR3(cursorSize, cursorSize, 0.0f));
 
 		// テクスチャの設定
-		m_pCursor->SetTexture(CTexture::LABEL_Cursor);
+		m_pCursor->SetTexture(CTexture::LABEL_Cursor_White);
 
 		// フェードの設定
 		m_pCursor->SetFade(0.0f);
