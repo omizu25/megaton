@@ -54,8 +54,6 @@ private:
 
 	/* ↓メンバ変数↓ */
 private:
-	CObject2D* m_pPauseBG;	// ポーズの背景
-	CPause* m_pPause;		// ポーズ
 	CTime* m_pTime;			// タイム
 	CScore* m_pScore;		// スコア
 	CScore* m_pBestScore;	// ベストスコア
