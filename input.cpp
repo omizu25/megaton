@@ -143,82 +143,11 @@ bool CInput::Press(STAN_DART_INPUT_KEY key)
 			return true;
 		}
 		break;
-	case CInput::KEY_PLAYER_UP:
-		if (m_pKeyboard->GetPress(DIK_W)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_UP, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_UP, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_DOWN:
-		if (m_pKeyboard->GetPress(DIK_S)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_DOWN, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_DOWN, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_LEFT:
-		if (m_pKeyboard->GetPress(DIK_A)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_LEFT, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_LEFT, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_RIGHT:
-		if (m_pKeyboard->GetPress(DIK_D)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_RIGHT, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_RIGHT, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_UP:
-		if (m_pKeyboard->GetPress(DIK_UP)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_Y, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_UP, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_DOWN:
-		if (m_pKeyboard->GetPress(DIK_DOWN)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_A, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_DOWN, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_LEFT:
-		if (m_pKeyboard->GetPress(DIK_LEFT)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_X, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_LEFT, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_RIGHT:
-		if (m_pKeyboard->GetPress(DIK_RIGHT)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_B, 0)
-			|| m_pJoypad->GetStickPress(CInputJoyPad::JOYKEY_RIGHT, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BOM:
-		if (m_pKeyboard->GetPress(DIK_SPACE)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_LEFT_SHOULDER, 0)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_RIGHT_SHOULDER, 0))
-		{
-			return true;
-		}
-		break;
 	case CInput::KEY_DECISION:
 		if (m_pKeyboard->GetPress(DIK_RETURN)
+			|| m_pKeyboard->GetPress(DIK_RETURN)
 			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_A , 0)
-			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_LEFT_SHOULDER, 0))
+			|| m_pJoypad->GetPress(CInputJoyPad::JOYKEY_B, 0))
 		{
 			return true;
 		}
@@ -280,78 +209,6 @@ bool CInput::Trigger(STAN_DART_INPUT_KEY key)
 			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_RIGHT, 0)
 			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_RIGHT, true, 0)
 			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_RIGHT, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_UP:
-		if (m_pKeyboard->GetTrigger(DIK_W)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_UP, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_UP, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_DOWN:
-		if (m_pKeyboard->GetTrigger(DIK_S)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_DOWN, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_DOWN, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_LEFT:
-		if (m_pKeyboard->GetTrigger(DIK_A)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_LEFT, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_LEFT, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_PLAYER_RIGHT:
-		if (m_pKeyboard->GetTrigger(DIK_D)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_RIGHT, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_RIGHT, false, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_UP:
-		if (m_pKeyboard->GetTrigger(DIK_UP)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_Y, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_UP, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_DOWN:
-		if (m_pKeyboard->GetTrigger(DIK_DOWN)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_A, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_DOWN, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_LEFT:
-		if (m_pKeyboard->GetTrigger(DIK_LEFT)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_X, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_LEFT, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BULLET_RIGHT:
-		if (m_pKeyboard->GetTrigger(DIK_RIGHT)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_B, 0)
-			|| m_pJoypad->GetStickTrigger(CInputJoyPad::JOYKEY_RIGHT, true, 0))
-		{
-			return true;
-		}
-		break;
-	case CInput::KEY_BOM:
-		if (m_pKeyboard->GetTrigger(DIK_SPACE)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_LEFT_SHOULDER, 0)
-			|| m_pJoypad->GetTrigger(CInputJoyPad::JOYKEY_RIGHT_SHOULDER, 0))
 		{
 			return true;
 		}
