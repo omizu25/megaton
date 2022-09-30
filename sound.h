@@ -33,6 +33,7 @@ public:
 		LABEL_SE_Gauge_Halfway,				// ゲージ中途半端(真中)
 		LABEL_SE_Gauge_Failed,				// ゲージ失敗
 		LABEL_SE_Explosion_Before,			// 爆発前
+		LABEL_SE_Explosion_Short,			// 爆発前(short.Ver)
 		LABEL_SE_Explosion,					// 爆発
 		LABEL_MAX,
 	};

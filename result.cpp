@@ -89,7 +89,7 @@ void CResult::Update()
 	m_time++;
 	if (m_time == 1)
 	{
-		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion_Before);
+		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion_Short);
 	}
 	
 	if (m_time >= 240)
