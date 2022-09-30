@@ -46,7 +46,8 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Hackathon_TitleLogo.png",			// タイトルロゴ
 	"data/TEXTURE/TEXT/Hackathon_Retry.png",		// リトライ
 	"data/TEXTURE/TEXT/Hackathon_End.png",			// 終了
-	"data/TEXTURE/Cursor.png",						// カーソル
+	"data/TEXTURE/Hackathon_Cursor.png",			// カーソル
+	"data/TEXTURE/Hackathon_Cursor_white.png",		// カーソル(白)
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");
