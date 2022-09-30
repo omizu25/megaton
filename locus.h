@@ -19,11 +19,12 @@
 class CLocus : public CObject3D
 {
 	/* ↓定義↓ */
-public:
+private:
+	static const float STD_SIZE;	// サイズの標準値
 
 	/* ↓静的メンバ関数↓ */
 public:
-	static CLocus* Create(const D3DXVECTOR3& start, const D3DXVECTOR3& end);	// 生成
+	static CLocus* Create();	// 生成
 
 	/* ↓メンバ関数↓ */
 public:
@@ -35,9 +36,6 @@ public:
 	void Uninit() override;	// 終了
 	void Update() override;	// 更新
 	void Draw() override;	// 描画
-
-private:
-	void SetMove(const D3DXVECTOR3& start, const D3DXVECTOR3& end);
 
 	/* ↓メンバ変数↓ */
 private:

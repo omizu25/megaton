@@ -12,10 +12,15 @@
 #include "application.h"
 #include <assert.h>
 
+//==================================================
+// 定義
+//==================================================
+const float CLocus::STD_SIZE = 30.0f;
+
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CLocus* CLocus::Create(const D3DXVECTOR3& start, const D3DXVECTOR3& end)
+CLocus* CLocus::Create()
 {
 	CLocus* pLocus = nullptr;
 
@@ -24,7 +29,6 @@ CLocus* CLocus::Create(const D3DXVECTOR3& start, const D3DXVECTOR3& end)
 	if (pLocus != nullptr)
 	{// nullチェック
 		pLocus->Init();
-		pLocus->SetMove(start, end);
 	}
 
 	return pLocus;
@@ -53,7 +57,7 @@ void CLocus::Init()
 	CObject3D::Init();
 
 	// サイズの設定
-	CObject3D::SetSize(D3DXVECTOR3(30.0f, (float)CApplication::SCREEN_HEIGHT, 0.0f));
+	CObject3D::SetSize(D3DXVECTOR3(STD_SIZE, STD_SIZE, 0.0f));
 }
 
 //--------------------------------------------------
@@ -81,12 +85,4 @@ void CLocus::Draw()
 {
 	// 描画
 	CObject3D::Draw();
-}
-
-//--------------------------------------------------
-// 移動量の設定
-//--------------------------------------------------
-void CLocus::SetMove(const D3DXVECTOR3& start, const D3DXVECTOR3& end)
-{
-	
 }
