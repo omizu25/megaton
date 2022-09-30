@@ -10,12 +10,13 @@
 //==================================================
 #include "locus.h"
 #include "application.h"
+#include "effect.h"
 #include <assert.h>
 
 //==================================================
 // íËã`
 //==================================================
-const float CLocus::STD_SIZE = 30.0f;
+const float CLocus::STD_SIZE = 0.0f;
 
 //--------------------------------------------------
 // ê∂ê¨
@@ -69,13 +70,13 @@ void CLocus::Init()
 	m_fSpeed = 1.0f;
 
 	// îgÇÃâ¡éZó 
-	m_fWaveSpeed = 0.01f;	
+	m_fWaveSpeed = 0.01f;
 
 	// îgÇÃî{ó¶
-	m_fWaveWidth = 1.0f;	
+	m_fWaveWidth = 1.0f;
 
 	// éıñΩ
-	m_nLife = 300;								
+	m_nLife = 300;
 }
 
 //--------------------------------------------------
@@ -102,6 +103,8 @@ void CLocus::Update()
 
 	// çXêV
 	CObject3D::Update();
+
+	CEffect::Create(GetPos(), D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 0.5f, 0.0f, 1.0f));
 
 	m_nLife--;
 

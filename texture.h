@@ -28,7 +28,6 @@ public:
 		/* ↓テキスト↓ */
 		LABEL_Number,	// 数
 		LABEL_Title,	// タイトル
-		LABEL_Rank,		// 位
 		LABEL_Comma,	// カンマ
 
 		/* ↓ハッカソン(2022/09/30)用↓ */
@@ -52,6 +51,7 @@ public:
 		LABEL_End,				// 終了
 		LABEL_Cursor,			// カーソル
 		LABEL_Cursor_White,		// カーソル(白)
+		LABEL_Rank,				// 位
 
 		LABEL_MAX
 	};
