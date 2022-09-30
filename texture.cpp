@@ -35,12 +35,16 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Hackathon_Ranking.png",		// ランキング
 	"data/TEXTURE/TEXT/Hachathon_GameBg.png",		// ゲーム画面の背景
 	"data/TEXTURE/TEXT/Hachathon_NightSky.jpg",		// 夜空
-	"data/TEXTURE/TEXT/hanabitutu.png",				// 花火筒
+	"data/TEXTURE/hanabitutu.png",					// 花火筒
 	"data/TEXTURE/TEXT/Hachathon_Number.png",		// 0～9
-	"data/TEXTURE/TEXT/Hachathon_Pien_yellow.png",	// ぴえん(黄)
-	"data/TEXTURE/TEXT/Hachathon_Pien_white.png",	// ぴえん(白)
-	"data/TEXTURE/TEXT/Hachathon_Target.png",		// ターゲット
+	"data/TEXTURE/Hachathon_Pien_yellow.png",		// ぴえん(黄)
+	"data/TEXTURE/Hachathon_Pien_white.png",		// ぴえん(白)
+	"data/TEXTURE/Hachathon_Target.png",			// ターゲット
 	"data/TEXTURE/TEXT/Hachathon_Tutorial.png",		// タイミング良くEnterを押そう！
+	"data/TEXTURE/Hackathon_otowakka_0.png",		// サークル(赤)
+	"data/TEXTURE/Hackathon_otowakka_1.png",		// サークル(緑)
+	"data/TEXTURE/Hackathon_otowakka_2.png",		// サークル(青)
+	"data/TEXTURE/Hackathon_5shakuball.png",		// 打ち上げ花火の弾部分
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");
