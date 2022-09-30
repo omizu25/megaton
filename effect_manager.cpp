@@ -379,9 +379,6 @@ void CEffectManager::Bom(const D3DXVECTOR3& pos)
 			pEffect = CEffect::Create(pos, move, col);
 		}
 	}
-
-	// SE
-	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Bom);
 }
 
 //--------------------------------------------------
