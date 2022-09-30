@@ -11,6 +11,7 @@
 // インクルード
 //==================================================
 #include "mode.h"
+#include "gage_manager.h"
 
 //==================================================
 // 前方宣言
@@ -39,13 +40,12 @@ public:
 	void Draw() override;	// 描画
 
 public:
-	CScore* GetScore();		// スコアの取得
+	CScore* GetScore(CGageManager::GAGE_TYPE type);		// スコアの取得
 	void EndGame();		// ゲーム設定
 
 	/* ↓メンバ変数↓ */
 private:
-	CScore* m_pScore;					// スコア
-	CScore* m_pBestScore;				// ベストスコア
+	CScore* m_pScore[CGageManager::MAX_GAGETYPE];	// スコア
 	CGageManager* m_pGageManager;		// ゲージマネージャー
 	int m_time;	//タイム
 	bool m_end;	// ゲーム終わったかどうか

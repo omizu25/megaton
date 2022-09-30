@@ -229,10 +229,6 @@ void CEnemy::Draw()
 //--------------------------------------------------
 void CEnemy::Kill()
 {
-	CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
-
-	// ƒXƒRƒA‚Ì‰ÁŽZ
-	pGame->GetScore()->Add(STD_SCORE);
 }
 
 //--------------------------------------------------
