@@ -16,6 +16,7 @@
 #include "renderer.h"
 #include "application.h"
 #include "utility.h"
+#include "sound.h"
 
 //=============================================================================
 // インスタンス生成
@@ -102,8 +103,8 @@ void CTwinCircle::Init()
 	pTarget1->SetTexture(CTexture::LABEL_Target);
 
 	// ディスタンスの最大値
-	float fMaxDistanceX = 1.0f / 0.1f * 18.0f;
-	float fMaxDistanceY = 1.0f / 0.1f * 15.0f;
+	float fMaxDistanceX = 1.0f / 0.1f * 10.0f;
+	float fMaxDistanceY = 1.0f / 0.1f * 30.0f;
 	m_fMaxDistance = sqrtf(fMaxDistanceX * fMaxDistanceX + fMaxDistanceY * fMaxDistanceY);
 }
 
@@ -160,6 +161,7 @@ void CTwinCircle::Update()
 		{
 			pTarget0->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
 			pTarget1->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Gauge_Halfway);
 		}
 	}
 	else if (!m_bAction)
