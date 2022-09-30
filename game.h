@@ -20,6 +20,7 @@ class CPause;
 class CTime;
 class CScore;
 class CPlayer;
+class CGauge2D;
 
 //==================================================
 // 定義
@@ -62,6 +63,8 @@ private:
 	CScore* m_pScore;		// スコア
 	CScore* m_pBestScore;	// ベストスコア
 	int m_time;	//タイム
+	CGauge2D *m_pGauge;	// ゲージ
+	int m_nGageWave;	// ゲージのサイズ
 };
 
 #endif // !_GAME_H_
