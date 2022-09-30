@@ -140,4 +140,26 @@ void CopyBuf(IDirect3DVertexBuffer9* pBuf, void* pSrc, unsigned size);
 //--------------------------------------------------
 int Digit(int number);
 
+//--------------------------------------------------
+// WorldCastScreen
+// 引数1  : D3DXVECTOR3 *screenPos // スクリーン座標
+// 引数2  : D3DXVECTOR3 screenSize // スクリーンサイズ
+// 引数3  : D3DXMATRIX* mtxView // ビューマトリックス
+// 引数4  : D3DXMATRIX* mtxProjection // プロジェクションマトリックス
+// 返値   : D3DXVECTOR3 2Dを3D
+//--------------------------------------------------
+D3DXVECTOR3 WorldCastScreen(D3DXVECTOR3 *screenPos,			// スクリーン座標
+	D3DXVECTOR3 screenSize,									// スクリーンサイズ
+	D3DXMATRIX* mtxView,									// ビューマトリックス
+	D3DXMATRIX* mtxProjection);								// プロジェクションマトリックス
+
+//--------------------------------------------------
+// ScreenCastWorld
+// 引数1  : D3DXVECTOR3  *screenPos // スクリーン座標
+// 引数2  : D3DXVECTOR3 screenSize
+// 返値  : D3DXVECTOR3 / 3Dを2D
+//--------------------------------------------------
+D3DXVECTOR3 ScreenCastWorld(D3DXVECTOR3 *screenPos,			// スクリーン座標
+	D3DXVECTOR3 screenSize);
+
 #endif // !_UTILITY_H_

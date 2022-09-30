@@ -12,7 +12,6 @@
 #include "application.h"
 #include "game.h"
 #include "utility.h"
-#include "player.h"
 #include <assert.h>
 
 //==================================================
@@ -68,35 +67,6 @@ void CCamera::Uninit()
 //--------------------------------------------------
 void CCamera::Update()
 {
-	CMode* pMode = CApplication::GetInstanse()->GetMode();
-
-	if (CMode::MODE_GAME != pMode->Get())
-	{// 指定のモードではない
-		// ホーミング
-		Homing(&m_pos, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), 5.0f);
-		return;
-	}
-
-	CGame* pGame = (CGame*)pMode;
-	CPlayer* pPlayer = pGame->GetPlayer();
-
-	if (pPlayer == nullptr)
-	{// nullチェック
-		// ホーミング
-		Homing(&m_pos, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), 5.0f);
-		return;
-	}
-	
-	D3DXVECTOR3 pos = pPlayer->GetPos();
-
-	D3DXVECTOR3 vecDiff = pos - m_pos;
-
-	float length = D3DXVec3Length(&vecDiff);
-
-	// ホーミング
-	Homing(&m_pos, m_pos, pos, length);
-
-	m_pos.z = 0.0f;	// これをしないとバグる
 }
 
 //--------------------------------------------------

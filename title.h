@@ -51,7 +51,6 @@ private:
 	/* メンバ変数 */
 private:
 	CMenu* m_pMenu;		// メニュー
-	D3DXCOLOR m_col;	// 色
 	int m_time;			// 時間
 	int m_partCnt;		// パーティクルカウンター
 };

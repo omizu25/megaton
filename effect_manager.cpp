@@ -18,7 +18,7 @@
 //==================================================
 // íËã`
 //==================================================
-const int CEffectManager::MAX_PARTICLE = 200;
+const int CEffectManager::MAX_PARTICLE = 500;
 const int CEffectManager::MAX_PLAYER = 500;
 const int CEffectManager::MAX_EXPLOSION = 50;
 const int CEffectManager::HALF_EXPLOSION = MAX_EXPLOSION / 2;
@@ -77,36 +77,72 @@ void CEffectManager::Release()
 //--------------------------------------------------
 // ÉpÅ[ÉeÉBÉNÉã
 //--------------------------------------------------
-void CEffectManager::Particle(const D3DXCOLOR& col)
+void CEffectManager::Particle(float move)
 {
-	D3DXVECTOR3 pos = D3DXVECTOR3(FloatRandom(100.0f, -100.0f), FloatRandom(100.0f, -100.0f), 0.0f);
+	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	D3DXCOLOR col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	col.r = FloatRandom(1.0f, 0.0f);
+	col.g = FloatRandom(1.0f, 0.0f);
+	col.b = FloatRandom(1.0f, 0.0f);
 
 	D3DXCOLOR randomCol = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	D3DXVECTOR3 move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	D3DXVECTOR3 randomMove = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 randomPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	float rot = 0.0f;
 	float random = 0.0f;
+	int max = (int)move * 30;
 
-	for (int i = 0; i < MAX_PARTICLE; i++)
+	for (int i = 0; i < max; i++)
 	{
-		rot = (D3DX_PI * 2.0f) / MAX_PARTICLE * i;
+		rot = (D3DX_PI * 2.0f) / max * i;
 
 		// äpìxÇÃê≥ãKâª
 		NormalizeAngle(&rot);
 
 		randomPos = D3DXVECTOR3(sinf(rot), cosf(rot), 0.0f) * FloatRandom(100.0f, 50.0f);
 
-		random = FloatRandom(PARTICLE_MOVE, PARTICLE_MOVE * 0.1f);
+		random = FloatRandom(move, move * 0.1f);
 
-		move.x = sinf(rot) * random;
-		move.y = cosf(rot) * random;
+		randomMove.x = sinf(rot) * random;
+		randomMove.y = cosf(rot) * random;
 
 		randomCol.r = col.r + FloatRandom(0.25f, -0.25f);
 		randomCol.g = col.g + FloatRandom(0.25f, -0.25f);
 		randomCol.b = col.b + FloatRandom(0.25f, -0.25f);
 
 		// ê∂ê¨
-		CEffect::Create(pos + randomPos, move, randomCol);
+		CEffect::Create(pos + randomPos, randomMove, randomCol);
+	}
+
+	D3DXCOLOR a = col;
+	a.r = col.r + FloatRandom(col.r, 0.0f);
+	a.g = col.g + FloatRandom(col.g, 0.0f);
+	a.b = col.b + FloatRandom(col.b, 0.0f);
+
+	for (int i = 0; i < (max / 2); i++)
+	{
+		rot = (D3DX_PI * 2.0f) / (max / 2) * i;
+
+		// äpìxÇÃê≥ãKâª
+		NormalizeAngle(&rot);
+
+		randomPos = D3DXVECTOR3(sinf(rot), cosf(rot), 0.0f) * FloatRandom(100.0f, 50.0f);
+
+		random = FloatRandom(move * 0.5f, move * 0.1f);
+
+		randomMove.x = sinf(rot) * random;
+		randomMove.y = cosf(rot) * random;
+
+		randomCol.r = a.r + FloatRandom(0.25f, -0.25f);
+		randomCol.g = a.g + FloatRandom(0.25f, -0.25f);
+		randomCol.b = a.b + FloatRandom(0.25f, -0.25f);
+
+		// ê∂ê¨
+		CEffect* pEffect = CEffect::Create(pos, randomMove, randomCol);
+
+		// êFÇÃå∏éZÇÇµÇ»Ç¢
+		pEffect->SetColSubtract(false);
 	}
 }
 
@@ -259,9 +295,6 @@ void CEffectManager::Bom(const D3DXVECTOR3& pos)
 
 			// ê∂ê¨
 			pEffect = CEffect::Create(pos, move, col);
-
-			// ìñÇΩÇËîªíËÇÇµÇ»Ç¢
-			pEffect->SetCollision(false);
 		}
 
 		{// ì‡ë§
@@ -270,9 +303,6 @@ void CEffectManager::Bom(const D3DXVECTOR3& pos)
 
 			// ê∂ê¨
 			pEffect = CEffect::Create(pos, move, col);
-
-			// ìñÇΩÇËîªíËÇÇµÇ»Ç¢
-			pEffect->SetCollision(false);
 		}
 	}
 
@@ -322,8 +352,5 @@ void CEffectManager::BG()
 
 		// êFÇÃå∏éZÇÇµÇ»Ç¢
 		pEffect->SetColSubtract(false);
-
-		// ìñÇΩÇËîªíËÇÇµÇ»Ç¢
-		pEffect->SetCollision(false);
 	}
 }

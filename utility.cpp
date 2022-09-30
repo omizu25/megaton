@@ -10,6 +10,8 @@
 // インクルード
 //==================================================
 #include "utility.h"
+#include "application.h"
+#include "camera.h"
 
 //--------------------------------------------------
 // 角度の正規化
@@ -235,4 +237,53 @@ int Digit(int number)
 	}
 
 	return (int)log10f((float)number) + 1;
+}
+
+//---------------------------------------------------------------------------
+// スクリーン座標をワールド座標へのキャスト
+//---------------------------------------------------------------------------
+D3DXVECTOR3 WorldCastScreen(D3DXVECTOR3 *screenPos,			// スクリーン座標
+	D3DXVECTOR3 screenSize,									// スクリーンサイズ
+	D3DXMATRIX* mtxView,									// ビューマトリックス
+	D3DXMATRIX* mtxProjection)								// プロジェクションマトリックス
+{
+	// 変数宣言
+	D3DXVECTOR3 ScreenPos;
+
+	// 計算用マトリックスの宣言
+	D3DXMATRIX InvView, InvPrj, VP, InvViewport;
+
+	// 各行列の逆行列を算出
+	D3DXMatrixInverse(&InvView, NULL, mtxView);
+	D3DXMatrixInverse(&InvPrj, NULL, mtxProjection);
+	D3DXMatrixIdentity(&VP);
+	VP._11 = screenSize.x / 2.0f; VP._22 = -screenSize.y / 2.0f;
+	VP._41 = screenSize.x / 2.0f; VP._42 = screenSize.y / 2.0f;
+	D3DXMatrixInverse(&InvViewport, NULL, &VP);
+
+	// ワールド座標へのキャスト
+	D3DXMATRIX mtxWorld = InvViewport * InvPrj * InvView;
+	D3DXVec3TransformCoord(&ScreenPos, screenPos, &mtxWorld);
+
+	return ScreenPos;
+}
+
+//---------------------------------------------------------------------------
+// スクリーン座標をワールド座標へのキャスト
+//---------------------------------------------------------------------------
+D3DXVECTOR3 ScreenCastWorld(D3DXVECTOR3 *screenPos,			// スクリーン座標
+	D3DXVECTOR3 screenSize									// スクリーンサイズ
+)															// プロジェクションマトリックス
+{
+	// 変数宣言
+
+	D3DXVECTOR3 pos = *screenPos;
+
+	D3DXVECTOR3 Camerapos = CApplication::GetInstanse()->GetCamera()->GetPos();
+
+	pos.y *= -1;
+
+	pos -= (Camerapos - D3DXVECTOR3(screenSize.x / 2, screenSize.y / 2, 0.0f));
+
+	return pos;
 }
