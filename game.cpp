@@ -67,6 +67,13 @@ void CGame::Init()
 		CBG::Create(CTexture::LABEL_GameBg);
 	}
 
+	//‰Ô‰Î“›
+	CObject2D* pHanabitutu = CObject2D::Create();
+	pHanabitutu->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.67f, (float)CApplication::SCREEN_HEIGHT * 0.82f, 0.0f));
+	pHanabitutu->SetSize(D3DXVECTOR3(200.0f, 200.0f, 0.0f));
+	pHanabitutu->SetTexture(CTexture::LABEL_Hanabitutu);
+	pHanabitutu->SetFade(0.0f);
+
 	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
 	float width = (float)CApplication::SCREEN_WIDTH * 0.9f;
 	float height = 0.0f;

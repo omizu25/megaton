@@ -81,8 +81,12 @@ CPendulum::~CPendulum()
 //=============================================================================
 void CPendulum::Init()
 {
+	//位置設定用
+	float fPosX = (CApplication::SCREEN_WIDTH * 0.34f);	//X軸
+	float fPosY = (CApplication::SCREEN_HEIGHT * 0.5f);	//Y軸
+
 	// 配置の初期設定
-	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
+	m_pos = D3DXVECTOR3(fPosX, fPosY, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
 
@@ -149,7 +153,7 @@ void CPendulum::Update()
 	}
 	else if (!m_bAction)
 	{
-		m_nScore = 100 - (100 * m_fDistance / m_fMaxDistance);
+		m_nScore = (int)(100 - (100 * m_fDistance / m_fMaxDistance));
 	}
 }
 
