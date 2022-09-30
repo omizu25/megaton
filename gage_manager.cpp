@@ -90,8 +90,8 @@ CGageManager::~CGageManager()
 void CGageManager::Init()
 {
 	// 配置の初期設定
-	float posX = (float)(CApplication::SCREEN_WIDTH * 0.3f);
-	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.7f);
+	float posX = (float)(CApplication::SCREEN_WIDTH * 0.2f);
+	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
 
 	m_pos = D3DXVECTOR3(posX, posY, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 向き
@@ -168,7 +168,7 @@ void CGageManager::Update()
 		if(!m_bKeyPress)
 		{// ゲージの更新
 			// サイズの更新
-			m_nCntGage++;
+			m_nCntGage += 2;
 			m_pGauge2D->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 			if (m_nCntGage == 10)
@@ -256,7 +256,8 @@ void CGageManager::Update()
 
 				m_type = MAX_GAGETYPE;
 				CLocus *pLocus = CLocus::Create();
-				pLocus->SetPos(D3DXVECTOR3(-50.0f, -200.0f, 0.0f));				pLocus->SetLife(600);
+				pLocus->SetPos(D3DXVECTOR3(-50.0f, -200.0f, 0.0f));
+				pLocus->SetLife(600);
 				pLocus->SetSpeed(15.0f);
 				pLocus->SetWaveSpeed(0.4f);
 				pLocus->SetWaveWidth(15.0f);

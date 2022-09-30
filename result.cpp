@@ -52,8 +52,8 @@ void CResult::Init()
 	}
 
 	CLocus *pLocus = CLocus::Create();
-	pLocus->SetPos(D3DXVECTOR3(-50.0f, -500.0f, 0.0f));
-	pLocus->SetLife(30);
+	pLocus->SetPos(D3DXVECTOR3(-50.0f, -550.0f, 0.0f));
+	pLocus->SetLife(35);
 	pLocus->SetSpeed(15.0f);
 	pLocus->SetWaveSpeed(0.4f);
 	pLocus->SetWaveWidth(15.0f);
@@ -103,10 +103,10 @@ void CResult::Update()
 	{
 		if (m_time >= 60)
 		{
-			float move = 15.0f;
+			float move = 1.0f;
 			int score = CRankingUI::Get(-1);
 
-			move += (float)(15 * score / 300);
+			move += (float)(score / 10);
 
 			CEffectManager::GetInstanse()->Fireworks(move);
 			m_fireworks = true;
