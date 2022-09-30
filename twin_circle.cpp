@@ -80,8 +80,12 @@ CTwinCircle::~CTwinCircle()
 //=============================================================================
 void CTwinCircle::Init()
 {
+	//位置設定用
+	float fPosX = (CApplication::SCREEN_WIDTH * 0.32f);	//X軸
+	float fPosY = (CApplication::SCREEN_HEIGHT * 0.5f);	//Y軸
+
 	// 配置の初期設定
-	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
+	m_pos = D3DXVECTOR3(fPosX, fPosY, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
 
@@ -96,7 +100,9 @@ void CTwinCircle::Init()
 	pTarget1->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 
 	// ディスタンスの最大値
-	m_fMaxDistance = 1.0f / 0.1f * 18.0f / 2.0f;
+	float fMaxDistanceX = 1.0f / 0.1f * 18.0f;
+	float fMaxDistanceY = 1.0f / 0.1f * 15.0f;
+	m_fMaxDistance = sqrtf(fMaxDistanceX * fMaxDistanceX + fMaxDistanceY * fMaxDistanceY);
 }
 
 //=============================================================================
@@ -133,12 +139,17 @@ void CTwinCircle::Update()
 		pTarget1->SetPos(pos1);
 
 		// ディスタンスの設定
-		m_fDistance = pTarget0->GetPos().x - pTarget1->GetPos().x;
-
-		if (m_fDistance < 0.0f)
+		float fDistanceX = pTarget0->GetPos().x - pTarget1->GetPos().x;
+		float fDistanceY = pTarget0->GetPos().y - pTarget1->GetPos().y;
+		if (fDistanceX < 0.0f)
 		{
-			m_fDistance *= -1;
+			fDistanceX *= -1;
 		}
+		else if (fDistanceY < 0.0f)
+		{
+			fDistanceY *= -1;
+		}
+		m_fDistance = sqrtf(fDistanceX * fDistanceX  + fDistanceY * fDistanceY);
 
 		pTarget0->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		pTarget1->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
@@ -152,6 +163,11 @@ void CTwinCircle::Update()
 	else if (!m_bAction)
 	{
 		m_nScore = 100 - (int)(100.0f * (m_fDistance / m_fMaxDistance));
+
+		if (m_nScore <= 0)
+		{
+			m_nScore = 0;
+		}
 	}
 }
 
