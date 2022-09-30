@@ -38,6 +38,7 @@ public:
 	/* ƒƒ“ƒo•Ï” */
 private:
 	int m_time;	// ŠÔ
+	bool m_fireworks;	// ‰Ô‰Î‚µ‚½‚©‚Ç‚¤‚©
 };
 
 #endif // !_RESULT_H_

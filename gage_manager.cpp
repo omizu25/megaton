@@ -247,8 +247,7 @@ void CGageManager::Update()
 
 				m_type = MAX_GAGETYPE;
 				CLocus *pLocus = CLocus::Create();
-				pLocus->SetPos(D3DXVECTOR3(-20.0f, -250.0f, 0.0f));
-				pLocus->SetLife(600);
+				pLocus->SetPos(D3DXVECTOR3(-50.0f, -200.0f, 0.0f));				pLocus->SetLife(600);
 				pLocus->SetSpeed(15.0f);
 				pLocus->SetWaveSpeed(0.4f);
 				pLocus->SetWaveWidth(15.0f);

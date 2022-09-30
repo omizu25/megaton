@@ -194,3 +194,11 @@ void CEffect::SetColSubtract(bool subtract)
 {
 	m_colSubtract = subtract;
 }
+
+//--------------------------------------------------
+// ÉTÉCÉYÇÃê›íË
+//--------------------------------------------------
+void CEffect::SetSize(const D3DXVECTOR2& size)
+{
+	m_size = size;
+}
