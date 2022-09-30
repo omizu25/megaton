@@ -12,8 +12,10 @@
 #include <assert.h>
 
 #include "pendulum.h"
+#include "object2D.h"
 #include "renderer.h"
 #include "application.h"
+#include "utility.h"
 
 //=============================================================================
 // インスタンス生成
@@ -48,10 +50,14 @@ CPendulum * CPendulum::Create(void)
 //=============================================================================
 CPendulum::CPendulum(CObject::ECategory cat) : CObject(cat)
 {
-	m_pos = D3DXVECTOR3(0.0f,0.0f,0.0f);			// 位置
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 向き
-	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 大きさ
-	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);		// カラー
+	pTarget = nullptr;									// ターゲット
+	pPendulum = nullptr;								// 振り子
+	m_pos = D3DXVECTOR3(0.0f,0.0f,0.0f);				// 位置
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
+	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 大きさ
+	m_movePendulum = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// 振り子の移動量
+	m_wave = D3DXVECTOR2(0.0f,0.0f);					// 波
+	m_nCount = 0;										// カウント
 }
 
 //=============================================================================
@@ -71,7 +77,21 @@ CPendulum::~CPendulum()
 //=============================================================================
 void CPendulum::Init()
 {
+	// 配置の初期設定
+	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
+	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
 
+	// ターゲットオブジェクトの設定
+	pTarget = CObject2D::Create();
+	pTarget->SetPos(m_pos);
+	pTarget->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
+	pTarget->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+
+	// 振り子オブジェクトの設定
+	pPendulum = CObject2D::Create();
+	pPendulum->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y, m_pos.z));
+	pPendulum->SetSize(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
 }
 
 //=============================================================================
@@ -91,7 +111,15 @@ void CPendulum::Uninit()
 //=============================================================================
 void CPendulum::Update()
 {
-	
+	m_wave.x += 0.05f;
+	m_wave.y += 0.1f;
+	NormalizeAngle(&m_wave.x);
+	NormalizeAngle(&m_wave.y);
+	m_movePendulum.x = cosf(m_wave.x) * 10.0f;
+	m_movePendulum.y = sinf(m_wave.y) * -10.0f;
+	// 振り子の移動
+	D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;
+	pPendulum->SetPos(pos);
 }
 
 //=============================================================================
@@ -111,7 +139,14 @@ void CPendulum::Draw()
 //=============================================================================
 void CPendulum::SetPos(const D3DXVECTOR3 &pos)
 {
-	
+	// 配置の初期設定
+	m_pos = pos;			// 位置
+
+	// ターゲットオブジェクトの設定
+	pTarget->SetPos(m_pos);
+
+	// 振り子オブジェクトの設定
+	pPendulum->SetPos(m_pos);
 }
 
 //=============================================================================
@@ -121,7 +156,14 @@ void CPendulum::SetPos(const D3DXVECTOR3 &pos)
 //=============================================================================
 void CPendulum::SetRot(const D3DXVECTOR3 &rot)
 {
-	
+	// 配置の初期設定
+	m_rot = rot;				// 向き
+
+	// ターゲットオブジェクトの設定
+	pTarget->SetPos(m_rot);
+
+	// 振り子オブジェクトの設定
+	pPendulum->SetPos(m_rot);
 }
 
 //=============================================================================
@@ -131,15 +173,12 @@ void CPendulum::SetRot(const D3DXVECTOR3 &rot)
 //=============================================================================
 void CPendulum::SetSize(const D3DXVECTOR3 & size)
 {
-	
-}
+	// 配置の初期設定
+	m_size = size;				// サイズ
 
-//=============================================================================
-// 色の設定
-// Author : 唐﨑結斗
-// 概要 : 頂点カラーを設定する
-//=============================================================================
-void CPendulum::SetCol(const D3DCOLOR &col)
-{
+	// ターゲットオブジェクトの設定
+	pTarget->SetSize(m_size);
 
+	// 振り子オブジェクトの設定
+	pPendulum->SetSize(m_size);
 }

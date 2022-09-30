@@ -52,16 +52,19 @@ public:
 	D3DXVECTOR3 GetPos() { return m_pos; }			// 位置のゲッター
 	D3DXVECTOR3 GetRot() { return m_rot; }			// 向きのゲッター
 	D3DXVECTOR3 GetSize() { return m_size; }		// 大きさのゲッター
-	void SetCol(const D3DCOLOR &col);				// 色のセッター
 
 private:
 	//--------------------------------------------------------------------
 	// メンバ変数
 	//--------------------------------------------------------------------
-	D3DXVECTOR3		m_pos;			// 位置
-	D3DXVECTOR3		m_rot;			// 向き
-	D3DXVECTOR3		m_size;			// 大きさ
-	D3DCOLOR		m_col;			// カラー
+	CObject2D		*pTarget;			// ターゲット
+	CObject2D		*pPendulum;			// 振り子
+	D3DXVECTOR3		m_pos;				// 位置
+	D3DXVECTOR3		m_rot;				// 向き
+	D3DXVECTOR3		m_size;				// 大きさ
+	D3DXVECTOR3		m_movePendulum;		// 振り子の移動量
+	D3DXVECTOR2		m_wave;				// 波
+	int				m_nCount;			// カウント
 };
 
 #endif

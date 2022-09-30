@@ -24,6 +24,7 @@
 #include "sound.h"
 #include "enemy.h"
 #include "gauge2D.h"
+#include "pendulum.h"
 
 #include <assert.h>
 
@@ -133,6 +134,8 @@ void CGame::Init()
 		m_pGauge->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		m_pGauge->SetMaxNumber(100.0f);
 		m_pGauge->SetCoefficient(1.0f);
+
+		CPendulum *pPendulum = CPendulum::Create();
 	}
 
 	// BGM
