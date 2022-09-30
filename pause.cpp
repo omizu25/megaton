@@ -145,10 +145,6 @@ bool CPause::Update()
 
 	if (CInput::GetKey()->Trigger(CInput::KEY_PAUSE))
 	{// Pキーが押された
-		// タイムの再開
-		CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
-		pGame->GetTime()->Restart();
-
 		// SE
 		CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
 		return false;
@@ -162,9 +158,6 @@ bool CPause::Update()
 
 	case ESelect::SELECT_RESUME:
 	{
-		// タイムの再開
-		CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
-		pGame->GetTime()->Restart();
 	}
 		break;
 

@@ -50,20 +50,20 @@ void CTitle::Init()
 	}
 
 	CObject2D* pTitle = CObject2D::Create();
-	pTitle->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.25f, 0.0f));
-	pTitle->SetSize(D3DXVECTOR3(1000.0f, 250.0f, 0.0f));
-	pTitle->SetTexture(CTexture::LABEL_Title);
+	pTitle->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.3f, 0.0f));
+	pTitle->SetSize(D3DXVECTOR3(1000.0f, 375.0f, 0.0f));
+	pTitle->SetTexture(CTexture::LABEL_TitleLogo);
 	pTitle->SetFade(0.0f);
 
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.85f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3(600.0f, 150.0f, 0.0f);
 
 		// メニューの生成
 		m_pMenu = CMenu::Create(pos, size, 1, 0.0f, true, false);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(0, CTexture::LABEL_NightSky);
+		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
 
 	// BGM

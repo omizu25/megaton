@@ -80,6 +80,7 @@ private:
 	int				m_nScore;			// スコア
 	int				m_nCntGage;			// ゲージのカウント
 	bool			m_bKeyPress;		// ボタンを押したか
+	bool			m_end;				// 終了したかどうか
 };
 
 #endif

@@ -17,6 +17,7 @@
 #include "menu.h"
 #include "object2D.h"
 #include "bg.h"
+#include "score.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -25,9 +26,7 @@
 CRanking::CRanking() : CMode(CMode::MODE_RANKING),
 	m_pRanking(nullptr),
 	m_pMenu(nullptr),
-	m_col(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)),
-	m_time(0),
-	m_partCnt(0)
+	m_time(0)
 {
 }
 
@@ -46,15 +45,10 @@ CRanking::~CRanking()
 void CRanking::Init()
 {
 	m_time = 0;
-	m_partCnt = 0;
-	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
 	{// 背景
 		CBG::Create(CTexture::LABEL_NightSky);
 	}
-
-	// ランキングの設定
-	CRankingUI::Set(-1);
 
 	{// ランキングの背景
 		float width = (float)CApplication::SCREEN_WIDTH * 0.75f;
@@ -64,6 +58,19 @@ void CRanking::Init()
 		CObject2D* pObj = CObject2D::Create();
 		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
 		pObj->SetSize(D3DXVECTOR3(600.0f, 650.0f, 0.0f));
+		pObj->SetTexture(CTexture::LABEL_NONE);
+		pObj->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.4f));
+		pObj->SetFade(0.0f);
+	}
+
+	{// スコアの背景
+		float width = (float)CApplication::SCREEN_WIDTH * 0.25f;
+		float height = (float)CApplication::SCREEN_HEIGHT * 0.25f - 10.0f;
+
+		// スコアの背景の生成
+		CObject2D* pObj = CObject2D::Create();
+		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
+		pObj->SetSize(D3DXVECTOR3(620.0f, 300.0f, 0.0f));
 		pObj->SetTexture(CTexture::LABEL_NONE);
 		pObj->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.4f));
 		pObj->SetFade(0.0f);
@@ -89,15 +96,43 @@ void CRanking::Init()
 		pObj->SetFade(0.0f);
 	}
 
+	{// 今回のスコア
+		D3DXVECTOR3 size = D3DXVECTOR3(CRankingUI::STD_WIDTH * 1.3f, CRankingUI::STD_HEIGHT * 1.3f, 0.0f);
+		int score = CRankingUI::Get(-1);
+		int digit = Digit(score);
+		float center = (digit * (size.x * 0.5f)) + (((digit - 1) / 3) * (size.x * 0.25f));
+		float width = (float)CApplication::SCREEN_WIDTH * 0.25f + center;
+		float height = (float)CApplication::SCREEN_HEIGHT * 0.35f;
+
+		// スコアの生成
+		m_pScore = CScore::Create(D3DXVECTOR3(width, height, 0.0f), size);
+
+		// スコアの設定
+		m_pScore->Set(score);
+	}
+
+	{// 今回のスコアの文字列
+		float width = (float)CApplication::SCREEN_WIDTH * 0.25f;
+		float height = (float)CApplication::SCREEN_HEIGHT * 0.15f - 12.5f;
+
+		// 文字列の生成
+		CObject2D* pObj = CObject2D::Create();
+		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
+		pObj->SetSize(D3DXVECTOR3(450.0f, 100.0f, 0.0f));
+		pObj->SetTexture(CTexture::LABEL_Score);
+		pObj->SetFade(0.0f);
+	}
+
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.25f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.35f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3(350.0f, 100.0f, 0.0f);
 
 		// メニューの生成
-		m_pMenu = CMenu::Create(pos, size, ESelect::SELECT_MAX, 50.0f, true, true);
+		m_pMenu = CMenu::Create(pos, size, ESelect::SELECT_MAX, 40.0f, true, true);
 
-		// 枠の設定
-		m_pMenu->SetFrame(D3DXVECTOR3(600.0f, (float)CApplication::SCREEN_HEIGHT, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+		// テクスチャの設定
+		m_pMenu->SetTexture(ESelect::SELECT_RETRY, CTexture::LABEL_Retry);
+		m_pMenu->SetTexture(ESelect::SELECT_END, CTexture::LABEL_End);
 	}
 }
 
@@ -151,13 +186,15 @@ void CRanking::Update()
 		switch (select)
 		{
 		case ESelect::SELECT_NONE:
-		case ESelect::SELECT_NORMAL:
-		case ESelect::SELECT_SAFETY_AREA:
-		case ESelect::SELECT_DANGER_AREA:
+			break;
+
+		case ESelect::SELECT_RETRY:
+			Change(CMode::MODE_GAME);
+			return;
 			break;
 
 		case ESelect::SELECT_END:
-			Change(MODE_TITLE);
+			Change(CMode::MODE_TITLE);
 			return;
 			break;
 
@@ -201,15 +238,6 @@ void CRanking::Effect()
 	{// 一定間隔待ち
 		return;
 	}
-
-	if (m_partCnt % 15 == 0)
-	{// 一定間隔
-		m_col.r = FloatRandom(1.0f, 0.0f);
-		m_col.g = FloatRandom(1.0f, 0.0f);
-		m_col.b = FloatRandom(1.0f, 0.0f);
-	}
-
-	m_partCnt++;
 
 	// パーティクル
 	CEffectManager::GetInstanse()->Particle();
