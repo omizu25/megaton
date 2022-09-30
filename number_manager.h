@@ -24,7 +24,7 @@ class CNumberManager
 {
 	/* ↓定義↓ */
 public:
-	static const int MAX_DIGIT = 10;	// 桁の最大数
+	static const int MAX_DIGIT = 3;	// 桁の最大数
 	static const int MAX_COMMA = 3;		// カンマの最大数
 
 	/* ↓静的メンバ関数↓ */
