@@ -25,7 +25,8 @@ const CSound::SParam CSound::PARAM[] =
 	{ "data/SE/OK.wav", 0 },						// ゲージ成功
 	{ "data/SE/NORMAL.wav", 0 },					// ゲージ中途半端(真中)
 	{ "data/SE/OUT.wav", 0 },						// ゲージ失敗
-	{ "data/SE/Explosion_Before_0.wav", 0 },		// 爆発前
+	{ "data/SE/Explosion_Before.wav", 0 },			// 爆発前
+	{ "data/SE/Explosion_before_short.wav", 0 },		// 爆発前
 	{ "data/SE/Explosion.wav", 0 },					// 爆発
 };
 

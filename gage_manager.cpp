@@ -92,7 +92,6 @@ void CGageManager::Init()
 	// 配置の初期設定
 	float posX = (float)(CApplication::SCREEN_WIDTH * 0.23f);
 	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
-
 	m_pos = D3DXVECTOR3(posX, posY, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);		// 大きさ
@@ -168,7 +167,7 @@ void CGageManager::Update()
 		if(!m_bKeyPress)
 		{// ゲージの更新
 			// サイズの更新
-			m_nCntGage++;
+			m_nCntGage += 2;
 			m_pGauge2D->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 			if (m_nCntGage == 10)
