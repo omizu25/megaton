@@ -71,15 +71,32 @@ void CGame::Init()
 	//花火筒
 	CObject2D* pFireWorkCylinder = CObject2D::Create();	//生成
 
-	//位置設定用
-	float posX = (float)(CApplication::SCREEN_WIDTH * 0.65f);
-	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
+	{//花火筒の設定
+		//位置設定用
+		float posX = (float)(CApplication::SCREEN_WIDTH * 0.5f);
+		float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
 
-	//各種設定
-	pFireWorkCylinder->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
-	pFireWorkCylinder->SetSize(D3DXVECTOR3(200.0f, 300.0f, 0.0f));
-	pFireWorkCylinder->SetTexture(CTexture::LABEL_Hanabitutu);
-	pFireWorkCylinder->SetFade(0.0f);
+		//各種設定
+		pFireWorkCylinder->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
+		pFireWorkCylinder->SetSize(D3DXVECTOR3(250.0f, 300.0f, 0.0f));
+		pFireWorkCylinder->SetTexture(CTexture::LABEL_Hanabitutu);
+		pFireWorkCylinder->SetFade(0.0f);
+	}
+
+	//チュートリアル
+	CObject2D* pTutorial = CObject2D::Create();	//生成
+
+	{//チュートリアルの設定
+		//位置設定用
+		float posX = (float)(CApplication::SCREEN_WIDTH * 0.8f);
+		float posY = (float)(CApplication::SCREEN_HEIGHT * 0.13f);
+
+		//各種設定
+		pTutorial->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
+		pTutorial->SetSize(D3DXVECTOR3(450.0f, 150.0f, 0.0f));
+		pTutorial->SetTexture(CTexture::LABEL_Tutorial);
+		pTutorial->SetFade(0.0f);
+	}
 
 	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
 	float width = (float)CApplication::SCREEN_WIDTH * 0.9f;

@@ -82,8 +82,8 @@ CPendulum::~CPendulum()
 void CPendulum::Init()
 {
 	//位置設定用
-	float fPosX = (CApplication::SCREEN_WIDTH * 0.34f);	//X軸
-	float fPosY = (CApplication::SCREEN_HEIGHT * 0.5f);	//Y軸
+	float fPosX = (CApplication::SCREEN_WIDTH * 0.23f);	//X軸
+	float fPosY = (CApplication::SCREEN_HEIGHT * 0.7f);	//Y軸
 
 	// 配置の初期設定
 	m_pos = D3DXVECTOR3(fPosX, fPosY, 0.0f);			// 位置
@@ -129,8 +129,8 @@ void CPendulum::Update()
 		m_wave.y += 0.1f;
 		NormalizeAngle(&m_wave.x);
 		NormalizeAngle(&m_wave.y);
-		m_movePendulum.x = cosf(m_wave.x) * 20.0f;
-		m_movePendulum.y = sinf(m_wave.y) * -10.0f;
+		m_movePendulum.x = cosf(m_wave.x) * 10.0f;
+		m_movePendulum.y = sinf(m_wave.y) * -20.0f;
 
 		// 振り子の移動
 		D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;
