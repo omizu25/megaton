@@ -49,6 +49,7 @@ public:
 		LABEL_Circle_Green,		// サークル(緑)
 		LABEL_Circle_Blue,		// サークル(青)
 		LABEL_FireWork_Ball,	// 打ち上げ花火の弾部分
+		LABEL_TitleLogo,		// タイトルロゴ
 
 		LABEL_MAX
 	};
