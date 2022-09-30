@@ -23,6 +23,7 @@
 #include "sound.h"
 #include "enemy.h"
 #include "gage_manager.h"
+#include "locus.h"
 
 #include <assert.h>
 
@@ -118,6 +119,14 @@ void CGame::Init()
 
 	{// ゲージマネージャー
 		m_pGageManager = CGageManager::Create();
+	}
+
+	{// 弾の管理
+		CLocus *pLocus = CLocus::Create();
+		pLocus->SetPos(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		pLocus->SetSpeed(2.0f);
+		pLocus->SetWaveWidth(25);
+		pLocus->SetWaveSpeed(0.2f);
 	}
 
 	// BGM
