@@ -31,6 +31,7 @@
     <ClCompile Include="inputjoypad.cpp" />
     <ClCompile Include="inputkeyboard.cpp" />
     <ClCompile Include="instancing.cpp" />
+    <ClCompile Include="locus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="mode.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="inputjoypad.h" />
     <ClInclude Include="inputkeyboard.h" />
     <ClInclude Include="instancing.h" />
+    <ClInclude Include="locus.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="mode.h" />

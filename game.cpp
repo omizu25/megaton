@@ -38,8 +38,6 @@ const int CGame::PAUSE_TIME = 100;
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CGame::CGame() : CMode(CMode::MODE_GAME),
-	m_pPauseBG(nullptr),
-	m_pPause(nullptr),
 	m_pTime(nullptr),
 	m_pScore(nullptr),
 	m_pBestScore(nullptr),
@@ -53,8 +51,6 @@ CGame::CGame() : CMode(CMode::MODE_GAME),
 //--------------------------------------------------
 CGame::~CGame()
 {
-	assert(m_pPauseBG == nullptr);
-	assert(m_pPause == nullptr);
 	assert(m_pTime == nullptr);
 	assert(m_pScore == nullptr);
 	assert(m_pBestScore == nullptr);
@@ -66,27 +62,6 @@ CGame::~CGame()
 void CGame::Init()
 {
 	m_time = 0;
-	m_pPause = nullptr;
-
-	{// ポーズの背景
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
-
-		// 生成
-		m_pPauseBG = CObject2D::Create();
-
-		// 位置の設定
-		m_pPauseBG->SetPos(pos);
-
-		// サイズの設定
-		m_pPauseBG->SetSize(size);
-
-		// 色の設定
-		m_pPauseBG->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.4f));
-
-		// 描画の設定
-		m_pPauseBG->SetDraw(false);
-	}
 
 	{// タイム
 		float width = (float)CApplication::SCREEN_WIDTH * 0.5f + (CTime::STD_WIDTH * 2.25f);
@@ -146,13 +121,6 @@ void CGame::Uninit()
 	// ランキングの設定
 	CRankingUI::Set(m_pScore->Get());
 
-	if (m_pPause != nullptr)
-	{// nullチェック
-		m_pPause->Uninit();
-		delete m_pPause;
-		m_pPause = nullptr;
-	}
-
 	if (m_pBestScore != nullptr)
 	{// nullチェック
 		m_pBestScore->Uninit();
@@ -177,11 +145,6 @@ void CGame::Uninit()
 	// 全ての解放
 	CObject::ReleaseAll(false);
 
-	if (m_pPauseBG != nullptr)
-	{// nullチェック
-		m_pPauseBG = nullptr;
-	}
-
 	// 停止
 	CApplication::GetInstanse()->GetSound()->Stop(CSound::LABEL_BGM_Game);
 }
@@ -191,49 +154,6 @@ void CGame::Uninit()
 //--------------------------------------------------
 void CGame::Update()
 {
-	if (m_pPause != nullptr)
-	{// nullチェック
-		// 更新
-		m_pPauseBG->Update();
-
-		bool pause = m_pPause->Update();
-
-		if (!pause)
-		{// ポーズ終わり
-			if (m_pPause != nullptr)
-			{// nullチェック
-				m_pPause->Release();
-				delete m_pPause;
-				m_pPause = nullptr;
-			}
-
-			// 描画の設定
-			m_pPauseBG->SetDraw(false);
-		}
-
-		return;
-	}
-
-	/* ポーズしていない */
-
-	if (CInput::GetKey()->Trigger(CInput::KEY_PAUSE))
-	{// Pキーが押された
-		if (m_pTime->Get() <= MAX_TIME - PAUSE_TIME)
-		{// ポーズ可能
-			m_pPause = CPause::Create();
-
-			// 描画の設定
-			m_pPauseBG->SetDraw(true);
-
-			// フェードの設定
-			m_pPauseBG->SetFade(0.0f);
-
-			// SE
-			CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
-			return;
-		}
-	}
-
 	// エフェクト
 	Effect();
 
