@@ -95,7 +95,7 @@ void CPendulum::Init()
 	pTarget->SetPos(m_pos);
 	pTarget->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 	pTarget->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
-	pTarget->SetTexture(CTexture::LABEL_Target);
+	pTarget->SetTexture(CTexture::LABEL_Circle_Green);
 
 	// 振り子オブジェクトの設定
 	pPendulum = CObject2D::Create();
