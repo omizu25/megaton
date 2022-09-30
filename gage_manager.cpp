@@ -64,6 +64,7 @@ CGageManager::CGageManager(CObject::ECategory cat) : CObject(cat)
 	m_size = D3DXVECTOR3(0.0f, 0.f, 0.0f);		// 大きさ
 	m_nScore = 0;								// スコア
 	m_nCntGage = 0;								// ゲージのカウント
+	m_nCntFrame = 0;							// フレームカウント
 	m_bKeyPress = false;						// ボタンを押したか
 	m_end = false;
 }
@@ -119,11 +120,15 @@ void CGageManager::Update()
 {
 	CInput* pInput = CInput::GetKey();
 
-	m_bKeyPress = pInput->Trigger(CInput::KEY_DECISION);
-
+	if (!m_bKeyPress)
+	{
+		m_bKeyPress = pInput->Trigger(CInput::KEY_DECISION);
+	}
+	
 	switch (m_type)
 	{
 	case CGageManager::GAGE_POLE:
+		if(!m_bKeyPress)
 		{// ゲージの更新
 			// サイズの更新
 			m_nCntGage++;
@@ -141,35 +146,52 @@ void CGageManager::Update()
 
 		if (m_bKeyPress)
 		{
-			m_bKeyPress = false;
-			m_nScore += m_nCntGage;
-			m_pGauge2D->Release();
+			m_nCntFrame++;
+			if (m_nCntFrame >= MAX_FRAME)
+			{
+				m_nCntFrame = 0;
+				m_bKeyPress = false;
+				m_nScore += m_nCntGage;
+				m_pGauge2D->Release();
 
-			m_pPendulum = CPendulum::Create();
-			m_type = GAGE_PENDULUM;
+				m_pPendulum = CPendulum::Create();
+				m_type = GAGE_PENDULUM;
+			}
 		}
 		break;
 
 	case CGageManager::GAGE_PENDULUM:
 		if (m_bKeyPress)
 		{
-			m_bKeyPress = false;
-			m_nScore += m_pPendulum->GetScore();
-			m_pPendulum->Release();
+			m_nCntFrame++;
+			m_pPendulum->SetAction(false);
+			if (m_nCntFrame >= MAX_FRAME)
+			{
+				m_nCntFrame = 0;
+				m_bKeyPress = false;
+				m_nScore += m_pPendulum->GetScore();
+				m_pPendulum->Release();
 
-			m_pTwinCircle = CTwinCircle::Create();
-			m_type = GAGE_TWINCIRCLE;
+				m_pTwinCircle = CTwinCircle::Create();
+				m_type = GAGE_TWINCIRCLE;
+			}
 		}
 		break;
 
 	case CGageManager::GAGE_TWINCIRCLE:
 		if (m_bKeyPress)
 		{
-			m_bKeyPress = false;
-			m_nScore += m_pTwinCircle->GetScore();
-			m_pTwinCircle->Release();
+			m_nCntFrame++;
+			m_pTwinCircle->SetAction(false);
+			if (m_nCntFrame >= MAX_FRAME)
+			{
+				m_nCntFrame = 0;
+				m_bKeyPress = false;
+				m_nScore += m_pTwinCircle->GetScore();
+				m_pTwinCircle->Release();
 
-			m_type = MAX_GAGETYPE;
+				m_type = MAX_GAGETYPE;
+			}
 		}
 		break;
 

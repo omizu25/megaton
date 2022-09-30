@@ -83,6 +83,8 @@ void CTitle::Uninit()
 	}
 
 	// ‘S‚Ä‚Ì‰ð•ú
+	CApplication::GetInstanse()->GetSound()->Stop(CSound::LABEL_BGM_Title);
+
 	CObject::ReleaseAll(false);
 
 	CApplication* pApp = CApplication::GetInstanse();

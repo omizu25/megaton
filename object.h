@@ -30,6 +30,7 @@ public:
 		CATEGORY_3D = 0,	// 3D
 		CATEGORY_EFFECT,	// エフェクト
 		CATEGORY_2D,		// 2D
+		CATEGORY_FADE,		// FADE
 		CATEGORY_MAX
 	};
 
