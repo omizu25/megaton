@@ -20,6 +20,7 @@
 #include "sound.h"
 #include "bg.h"
 #include "fade.h"
+#include "locus.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -48,6 +49,12 @@ void CResult::Init()
 		CBG::Create(CTexture::LABEL_NightSky);
 	}
 
+	CLocus *pLocus = CLocus::Create();
+	pLocus->SetPos(D3DXVECTOR3(0.0f, -500.0f, 0.0f));
+	pLocus->SetLife(40);
+	pLocus->SetSpeed(15.0f);
+	pLocus->SetWaveSpeed(0.4f);
+	pLocus->SetWaveWidth(15.0f);
 }
 
 //--------------------------------------------------
