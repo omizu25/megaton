@@ -29,11 +29,8 @@ public:
 
 		/* ↓テキスト↓ */
 		LABEL_Number,			// 数
-		LABEL_PressAny,			// PressAny
 		LABEL_Title,			// タイトル
 		LABEL_Rank,				// 位
-		LABEL_Rankig_Result,	// リザルト用のランキング
-		LABEL_NewScore,			// 新しいスコア
 		LABEL_Comma,			// カンマ
 		LABEL_Period,			// ピリオド
 		LABEL_Pause,			// ポーズ
@@ -41,6 +38,14 @@ public:
 		LABEL_Restart,			// リスタート
 		LABEL_End,				// 終了
 		LABEL_Retry,			// リトライ
+
+		/* ↓ハッカソン(2022/09/30)用↓ */
+		LABEL_PressAnyKey,	// 何かキーを押してね
+		LABEL_Score,		// スコア
+		LABEL_Ranking,		// ランキング
+		LABEL_GameBg,		// ゲーム画面の背景
+		LABEL_NightSky,		// 夜空
+
 		LABEL_MAX
 	};
 
