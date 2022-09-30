@@ -24,18 +24,12 @@ public:
 		LABEL_NONE = -1,	// 使用しない
 		LABEL_Effect = 0,	// エフェクト
 		LABEL_BG_1,			// 背景
-		LABEL_Cursor,		// カーソル
-		LABEL_Tutorial,		// チュートリアル
 
 		/* ↓テキスト↓ */
 		LABEL_Number,			// 数
 		LABEL_Title,			// タイトル
 		LABEL_Rank,				// 位
 		LABEL_Comma,			// カンマ
-		LABEL_Period,			// ピリオド
-		LABEL_Pause,			// ポーズ
-		LABEL_Resume,			// 再開
-		LABEL_Restart,			// リスタート
 		LABEL_End,				// 終了
 		LABEL_Retry,			// リトライ
 
@@ -50,6 +44,7 @@ public:
 		LABEL_Pien_yellow,	// ぴえん(黄)
 		LABEL_Pien_white,	// ぴえん(白)
 		LABEL_Target,		// ターゲット
+		LABEL_Tutorial,		// タイミング良くEnterを押そう！
 
 		LABEL_MAX
 	};

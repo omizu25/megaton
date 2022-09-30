@@ -22,10 +22,7 @@
 #include "object2D.h"
 #include "sound.h"
 #include "enemy.h"
-#include "gauge2D.h"
-#include "pendulum.h"
-#include "twin_circle.h"
-#include "bg.h"
+#include "gage_manager.h"
 
 #include <assert.h>
 
@@ -39,11 +36,12 @@ const int CGame::PAUSE_TIME = 100;
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CGame::CGame() : CMode(CMode::MODE_GAME),
+	m_pPauseBG(nullptr),
+	m_pPause(nullptr),
 	m_pTime(nullptr),
 	m_pScore(nullptr),
 	m_pBestScore(nullptr),
-	m_time(0),
-	m_nGageWave(0)
+	m_time(0)
 {
 }
 
@@ -52,6 +50,8 @@ CGame::CGame() : CMode(CMode::MODE_GAME),
 //--------------------------------------------------
 CGame::~CGame()
 {
+	assert(m_pPauseBG == nullptr);
+	assert(m_pPause == nullptr);
 	assert(m_pTime == nullptr);
 	assert(m_pScore == nullptr);
 	assert(m_pBestScore == nullptr);
@@ -63,9 +63,26 @@ CGame::~CGame()
 void CGame::Init()
 {
 	m_time = 0;
+	m_pPause = nullptr;
 
-	{// 背景
-		CBG::Create(CTexture::LABEL_GameBg);
+	{// ポーズの背景
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
+
+		// 生成
+		m_pPauseBG = CObject2D::Create();
+
+		// 位置の設定
+		m_pPauseBG->SetPos(pos);
+
+		// サイズの設定
+		m_pPauseBG->SetSize(size);
+
+		// 色の設定
+		m_pPauseBG->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.4f));
+
+		// 描画の設定
+		m_pPauseBG->SetDraw(false);
 	}
 
 	{// タイム
@@ -99,16 +116,8 @@ void CGame::Init()
 		m_pBestScore->Set(score);
 	}
 
-	{// ゲージ
-		/*m_pGauge = CGauge2D::Create();
-		m_pGauge->SetPos(D3DXVECTOR3(640.0f, 500.0f, 0.0f));
-		m_pGauge->SetSize(D3DXVECTOR3(50.0f, 300.0f, 0.0f));
-		m_pGauge->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
-		m_pGauge->SetMaxNumber(100.0f);
-		m_pGauge->SetCoefficient(1.0f);
-
-		CPendulum *pPendulum = CPendulum::Create();*/
-		CTwinCircle *pTwinCircle = CTwinCircle::Create();
+	{// ゲージマネージャー
+		m_pGageManager = CGageManager::Create();
 	}
 
 	// BGM
@@ -125,6 +134,13 @@ void CGame::Uninit()
 {	
 	// ランキングの設定
 	CRankingUI::Set(m_pScore->Get());
+
+	if (m_pPause != nullptr)
+	{// nullチェック
+		m_pPause->Uninit();
+		delete m_pPause;
+		m_pPause = nullptr;
+	}
 
 	if (m_pBestScore != nullptr)
 	{// nullチェック
@@ -150,6 +166,11 @@ void CGame::Uninit()
 	// 全ての解放
 	CObject::ReleaseAll(false);
 
+	if (m_pPauseBG != nullptr)
+	{// nullチェック
+		m_pPauseBG = nullptr;
+	}
+
 	// 停止
 	CApplication::GetInstanse()->GetSound()->Stop(CSound::LABEL_BGM_Game);
 }
@@ -159,21 +180,54 @@ void CGame::Uninit()
 //--------------------------------------------------
 void CGame::Update()
 {
+	if (m_pPause != nullptr)
+	{// nullチェック
+		// 更新
+		m_pPauseBG->Update();
+
+		bool pause = m_pPause->Update();
+
+		if (!pause)
+		{// ポーズ終わり
+			if (m_pPause != nullptr)
+			{// nullチェック
+				m_pPause->Release();
+				delete m_pPause;
+				m_pPause = nullptr;
+			}
+
+			// 描画の設定
+			m_pPauseBG->SetDraw(false);
+		}
+
+		return;
+	}
+
+	/* ポーズしていない */
+
+	if (CInput::GetKey()->Trigger(CInput::KEY_PAUSE))
+	{// Pキーが押された
+		if (m_pTime->Get() <= MAX_TIME - PAUSE_TIME)
+		{// ポーズ可能
+			m_pPause = CPause::Create();
+
+			// 描画の設定
+			m_pPauseBG->SetDraw(true);
+
+			// フェードの設定
+			m_pPauseBG->SetFade(0.0f);
+
+			// SE
+			CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
+			return;
+		}
+	}
+
 	// エフェクト
 	Effect();
 
 	// タイムの減算
 	m_pTime->Update();
-
-	//{// ゲージの更新
-	//	// サイズの更新
-	//	m_nGageWave++;
-	//	if (m_nGageWave >= 100)
-	//	{
-	//		m_nGageWave = 0;
-	//	}
-	//	m_pGauge->SetNumber((float)m_nGageWave);
-	//}
 
 	// 更新
 	CObject::UpdateAll();

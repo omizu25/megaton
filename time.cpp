@@ -94,7 +94,7 @@ void CTime::Init(const D3DXVECTOR3& pos, const D3DXVECTOR3& size)
 	m_pPeriod->SetSize(size * 0.5f);
 
 	// テクスチャの設定
-	m_pPeriod->SetTexture(CTexture::LABEL_Period);
+	m_pPeriod->SetTexture(CTexture::LABEL_NONE);
 
 	// フェードの設定
 	m_pPeriod->SetFade(0.0f);
