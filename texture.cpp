@@ -18,16 +18,14 @@
 //==================================================
 const char* CTexture::FILE_NAME[] =
 {// テクスチャのパス
-	"data/TEXTURE/effect.jpg",		// エフェクト
-	"data/TEXTURE/bg000.png",		// 背景
+	"data/TEXTURE/effect.jpg",	// エフェクト
+	"data/TEXTURE/bg000.png",	// 背景
 
 	/* ↓テキスト↓ */
-	"data/TEXTURE/TEXT/Number.png",		// 数
-	"data/TEXTURE/TEXT/title.png",		// タイトル
-	"data/TEXTURE/TEXT/rank.png",		// 位
-	"data/TEXTURE/TEXT/Comma.png",		// カンマ
-	"data/TEXTURE/TEXT/End.png",		// 終了
-	"data/TEXTURE/TEXT/Retry.png",		// リトライ
+	"data/TEXTURE/TEXT/Number.png",	// 数
+	"data/TEXTURE/TEXT/title.png",	// タイトル
+	"data/TEXTURE/TEXT/rank.png",	// 位
+	"data/TEXTURE/TEXT/Comma.png",	// カンマ
 
 	/* ↓ハッカソン(2022/09/30)用↓ */
 	"data/TEXTURE/TEXT/Hackathon_PressEnter.png",	// Enterを押してね
@@ -36,7 +34,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Hachathon_GameBg.png",		// ゲーム画面の背景
 	"data/TEXTURE/TEXT/Hachathon_NightSky.jpg",		// 夜空
 	"data/TEXTURE/hanabitutu.png",					// 花火筒
-	"data/TEXTURE/TEXT/Hachathon_Number.png",		// 0～9
+	"data/TEXTURE/TEXT/Hackathon_Number.png",		// 0～9
 	"data/TEXTURE/Hachathon_Pien_yellow.png",		// ぴえん(黄)
 	"data/TEXTURE/Hachathon_Pien_white.png",		// ぴえん(白)
 	"data/TEXTURE/Hachathon_Target.png",			// ターゲット
@@ -46,6 +44,9 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Hackathon_otowakka_2.png",		// サークル(青)
 	"data/TEXTURE/Hackathon_5shakuball.png",		// 打ち上げ花火の弾部分
 	"data/TEXTURE/Hackathon_TitleLogo.png",			// タイトルロゴ
+	"data/TEXTURE/TEXT/Hackathon_Retry.png",		// リトライ
+	"data/TEXTURE/TEXT/Hackathon_End.png",			// 終了
+	"data/TEXTURE/Cursor.png",						// カーソル
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");

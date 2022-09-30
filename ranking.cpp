@@ -91,7 +91,7 @@ void CRanking::Init()
 		// 文字列の生成
 		CObject2D* pObj = CObject2D::Create();
 		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
-		pObj->SetSize(D3DXVECTOR3(450.0f, 150.0f, 0.0f));
+		pObj->SetSize(D3DXVECTOR3(480.0f, 150.0f, 0.0f));
 		pObj->SetTexture(CTexture::LABEL_Ranking);
 		pObj->SetFade(0.0f);
 	}
@@ -118,14 +118,14 @@ void CRanking::Init()
 		// 文字列の生成
 		CObject2D* pObj = CObject2D::Create();
 		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
-		pObj->SetSize(D3DXVECTOR3(450.0f, 100.0f, 0.0f));
+		pObj->SetSize(D3DXVECTOR3(350.0f, 150.0f, 0.0f));
 		pObj->SetTexture(CTexture::LABEL_Score);
 		pObj->SetFade(0.0f);
 	}
 
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.35f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(350.0f, 100.0f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.3f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(350.0f, 120.0f, 0.0f);
 
 		// メニューの生成
 		m_pMenu = CMenu::Create(pos, size, ESelect::SELECT_MAX, 40.0f, true, true);
