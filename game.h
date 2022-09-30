@@ -15,7 +15,7 @@
 //==================================================
 // 前方宣言
 //==================================================
-class CGauge2D;
+class CGageManager;
 class CObject2D;
 class CPause;
 class CTime;
@@ -54,14 +54,13 @@ private:
 
 	/* ↓メンバ変数↓ */
 private:
-	CObject2D* m_pPauseBG;	// ポーズの背景
-	CPause* m_pPause;		// ポーズ
-	CTime* m_pTime;			// タイム
-	CScore* m_pScore;		// スコア
-	CScore* m_pBestScore;	// ベストスコア
-	CGauge2D* m_pGauge;		// ゲージ
+	CObject2D* m_pPauseBG;				// ポーズの背景
+	CPause* m_pPause;					// ポーズ
+	CTime* m_pTime;						// タイム
+	CScore* m_pScore;					// スコア
+	CScore* m_pBestScore;				// ベストスコア
+	CGageManager* m_pGageManager;		// ゲージマネージャー
 	int m_time;	//タイム
-	int m_nGageWave;
 };
 
 #endif // !_GAME_H_
