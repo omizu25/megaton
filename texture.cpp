@@ -38,7 +38,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Hachathon_Pien_yellow.png",		// ぴえん(黄)
 	"data/TEXTURE/Hachathon_Pien_white.png",		// ぴえん(白)
 	"data/TEXTURE/Hachathon_Target.png",			// ターゲット
-	"data/TEXTURE/TEXT/Hachathon_Tutorial.png",		// タイミング良くEnterを押そう！
+	"data/TEXTURE/TEXT/Hackathon_Tutorial.png",		// タイミング良くEnterを押そう！
 	"data/TEXTURE/Hackathon_otowakka_0.png",		// サークル(赤)
 	"data/TEXTURE/Hackathon_otowakka_1.png",		// サークル(緑)
 	"data/TEXTURE/Hackathon_otowakka_2.png",		// サークル(青)

@@ -39,6 +39,7 @@ public:
 	void SetSpeed(const float fSpeed) { m_fSpeed = fSpeed; }						// ‘¬“x‚Ìİ’è
 	void SetWaveSpeed(const float fWaveSpeed) { m_fWaveSpeed = fWaveSpeed; }		// ”g‚Ì‰ÁZ—Ê‚Ìİ’è
 	void SetWaveWidth(const float fWaveWidth) { m_fWaveWidth = fWaveWidth; }		// ”g‚Ì”{—¦‚Ìİ’è
+	void SetLife(const int nLife) { m_nLife = nLife; }								// ‘Ì—Í‚Ìİ’è
 
 	/* «ƒƒ“ƒo•Ï”« */
 private:
@@ -47,6 +48,7 @@ private:
 	float			m_fWave;			// ”g
 	float			m_fWaveSpeed;		// ”g‚Ì‰ÁZ—Ê
 	float			m_fWaveWidth;		// ”g‚Ì”{—¦
+	int				m_nLife;			// õ–½
 };
 
 #endif // !_LOCUS_H_

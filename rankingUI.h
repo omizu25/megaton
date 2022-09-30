@@ -59,8 +59,7 @@ public:
 	void Uninit();	// 終了
 	void Release();	// 解放
 	void Update();	// 更新
-	void Reset(const D3DXVECTOR3& pos, float length, bool draw);	// リセット
-
+	
 	/* ↓メンバ変数↓ */
 private:
 	CScore* m_pRanking[MAX_RANKING];	// ランキング

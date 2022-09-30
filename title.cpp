@@ -18,6 +18,7 @@
 #include "sound.h"
 #include "game.h"
 #include "bg.h"
+#include "fade.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -111,7 +112,7 @@ void CTitle::Update()
 	{// フェード時間
 		if (select != -1)
 		{
-			Change(MODE_GAME);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_GAME);
 		}
 	}
 

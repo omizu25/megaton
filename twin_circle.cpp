@@ -82,7 +82,7 @@ CTwinCircle::~CTwinCircle()
 void CTwinCircle::Init()
 {
 	//位置設定用
-	float fPosX = (CApplication::SCREEN_WIDTH * 0.32f);	//X軸
+	float fPosX = (CApplication::SCREEN_WIDTH * 0.21f);	//X軸
 	float fPosY = (CApplication::SCREEN_HEIGHT * 0.5f);	//Y軸
 
 	// 配置の初期設定
@@ -130,8 +130,8 @@ void CTwinCircle::Update()
 		m_wave.y += 0.1f;
 		NormalizeAngle(&m_wave.x);
 		NormalizeAngle(&m_wave.y);
-		m_moveTarget.x = sinf(m_wave.x) * 18.0f;
-		m_moveTarget.y = cosf(m_wave.y) * 15.0f;
+		m_moveTarget.x = sinf(m_wave.x) * 10.0f;
+		m_moveTarget.y = cosf(m_wave.y) * 30.0f;
 
 		// 振り子の移動
 		D3DXVECTOR3 pos0 = pTarget0->GetPos() + m_moveTarget;

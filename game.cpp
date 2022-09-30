@@ -24,7 +24,7 @@
 #include "enemy.h"
 #include "gage_manager.h"
 #include "bg.h"
-#include "gauge2D.h"
+#include "fade.h"
 
 #include <assert.h>
 
@@ -68,21 +68,34 @@ void CGame::Init()
 		CBG::Create(CTexture::LABEL_GameBg);
 	}
 
-	{// ゲージ枠
-		D3DXVECTOR3 pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(60.0f, 410.0f, 0.0f);			// 大きさ
-		CGauge2D* m_pGauge2D = CGauge2D::Create();
-		m_pGauge2D->SetPos(D3DXVECTOR3(pos.x, pos.y + size.y / 4.1f, 0.0f));
-		m_pGauge2D->SetChange(false, size);
+	//花火筒
+	CObject2D* pFireWorkCylinder = CObject2D::Create();	//生成
+
+	{//花火筒の設定
+		//位置設定用
+		float posX = (float)(CApplication::SCREEN_WIDTH * 0.5f);
+		float posY = (float)(CApplication::SCREEN_HEIGHT * 0.78f);
+
+		//各種設定
+		pFireWorkCylinder->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
+		pFireWorkCylinder->SetSize(D3DXVECTOR3(250.0f, 300.0f, 0.0f));
+		pFireWorkCylinder->SetTexture(CTexture::LABEL_Hanabitutu);
+		pFireWorkCylinder->SetFade(0.0f);
 	}
 
-	{// ゲージ背景
-		D3DXVECTOR3 pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(50.0f, 400.0f, 0.0f);			// 大きさ
-		CGauge2D* m_pGauge2D = CGauge2D::Create();
-		m_pGauge2D->SetPos(D3DXVECTOR3(pos.x, pos.y + size.y / 4.0f, 0.0f));
-		m_pGauge2D->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
-		m_pGauge2D->SetChange(false, size);
+	//チュートリアル
+	CObject2D* pTutorial = CObject2D::Create();	//生成
+
+	{//チュートリアルの設定
+		//位置設定用
+		float posX = (float)(CApplication::SCREEN_WIDTH * 0.8f);
+		float posY = (float)(CApplication::SCREEN_HEIGHT * 0.13f);
+
+		//各種設定
+		pTutorial->SetPos(D3DXVECTOR3(posX, posY, 0.0f));
+		pTutorial->SetSize(D3DXVECTOR3(450.0f, 150.0f, 0.0f));
+		pTutorial->SetTexture(CTexture::LABEL_Tutorial);
+		pTutorial->SetFade(0.0f);
 	}
 
 	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
@@ -152,7 +165,8 @@ void CGame::Update()
 
 		if (m_time >= 120)
 		{
-			Change(MODE_RESULT);
+			CApplication::GetInstanse()->GetFade()->SetFade(CMode::MODE_RESULT);
+			return;
 		}
 	}
 

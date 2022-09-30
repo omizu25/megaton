@@ -24,6 +24,7 @@
 #include "score.h"
 #include "sound.h"
 #include "input.h"
+#include "locus.h"
 
 //=============================================================================
 // インスタンス生成
@@ -89,18 +90,52 @@ CGageManager::~CGageManager()
 void CGageManager::Init()
 {
 	// 配置の初期設定
-	m_pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);			// 位置
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
-	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
+	float posX = (float)(CApplication::SCREEN_WIDTH * 0.3f);
+	float posY = (float)(CApplication::SCREEN_HEIGHT * 0.7f);
 
-	// ゲージ
-	m_pGauge2D = CGauge2D::Create();
-	m_pGauge2D->SetSize(D3DXVECTOR3(50.0f, 200.0f, 0.0f));
-	m_pGauge2D->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + m_size.y / 2.0f, 0.0f));
-	m_pGauge2D->SetMaxNumber(100.0f);
-	m_pGauge2D->SetCoefficient(1.0f);
+	m_pos = D3DXVECTOR3(posX, posY, 0.0f);			// 位置
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			// 向き
+	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);		// 大きさ
 
-	m_end = false;
+	{// ゲージ枠
+		m_pMax = CGauge2D::Create();	//生成
+
+		//設定用
+		float height = 810.0f;	//高さ
+		D3DXVECTOR3 size = D3DXVECTOR3(60.0f, height, 0.0f);	// 大きさ
+
+		//各種設定
+		m_pMax->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + size.y / (height * 0.01f), 0.0f));
+		m_pMax->SetChange(false, size);
+	}
+
+	{// ゲージ背景
+		m_pFrame = CGauge2D::Create();	//生成
+
+		//設定用
+		float height = 800.0f;	//高さ
+		D3DXVECTOR3 size = D3DXVECTOR3(50.0f, height, 0.0f);	// 大きさ
+
+		//各種設定
+		m_pFrame->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + size.y / (height * 0.01f), 0.0f));
+		m_pFrame->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
+		m_pFrame->SetChange(false, size);
+	}
+
+	{// ゲージ
+		m_pGauge2D = CGauge2D::Create();	//生成
+
+		//設定用
+		float height = 200.0f;	//高さ
+
+		//各種設定
+		m_pGauge2D->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + m_size.y / (height * 0.01f), 0.0f));
+		m_pGauge2D->SetSize(D3DXVECTOR3(50.0f, height, 0.0f));
+		m_pGauge2D->SetMaxNumber(50.0f);
+		m_pGauge2D->SetCoefficient(1.0f);
+		m_pGauge2D->SetNumber(30.0f);
+		m_end = false;
+	}
 }
 
 //=============================================================================
@@ -166,7 +201,9 @@ void CGageManager::Update()
 				// スコアの加算
 				pGame->GetScore(GAGE_POLE)->Set(m_pGauge2D->GetNumber());
 
-				m_pGauge2D->Release();
+				m_pGauge2D->Release(); 
+				m_pMax->Release(); 
+				m_pFrame->Release();
 
 				m_pPendulum = CPendulum::Create();
 				m_type = GAGE_PENDULUM;
@@ -218,6 +255,12 @@ void CGageManager::Update()
 				m_pTwinCircle->Release();
 
 				m_type = MAX_GAGETYPE;
+				CLocus *pLocus = CLocus::Create();
+				pLocus->SetPos(D3DXVECTOR3(0.0f, -300.0f, 0.0f));
+				pLocus->SetLife(600);
+				pLocus->SetSpeed(15.0f);
+				pLocus->SetWaveSpeed(0.4f);
+				pLocus->SetWaveWidth(15.0f);
 			}
 		}
 		break;

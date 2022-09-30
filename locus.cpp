@@ -44,6 +44,7 @@ CLocus::CLocus()
 	m_fSpeed = 0.0f;							// ë¨ìx
 	m_fWaveSpeed = 0.0f;						// îgÇÃâ¡éZó 
 	m_fWaveWidth = 0.0f;						// îgÇÃî{ó¶
+	m_nLife = 0;								// éıñΩ
 }
 
 //--------------------------------------------------
@@ -71,7 +72,10 @@ void CLocus::Init()
 	m_fWaveSpeed = 0.01f;	
 
 	// îgÇÃî{ó¶
-	m_fWaveWidth = 1.0f;						
+	m_fWaveWidth = 1.0f;	
+
+	// éıñΩ
+	m_nLife = 300;								
 }
 
 //--------------------------------------------------
@@ -98,6 +102,14 @@ void CLocus::Update()
 
 	// çXêV
 	CObject3D::Update();
+
+	m_nLife--;
+
+	if (m_nLife <= 0)
+	{
+		m_nLife = 0;
+		CObject::Release();
+	}
 }
 
 //--------------------------------------------------

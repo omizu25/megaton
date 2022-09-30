@@ -72,13 +72,14 @@ void CFade::Init()
 	CObject2D::Init();
 
 	// フェード完了までの時間
-	m_nFadeFrame = 60;					
+	m_nFadeFrame = 30;					
 	m_bFade = false;
 
 	// 頂点バッファの設定
 	SetPos(D3DXVECTOR3(640.0f, 360.0f, 0.0f));
 	SetSize(D3DXVECTOR3(1280.0f, 720.0f, 0.0f));
 	SetCol(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	SetKeep(true);
 }
 
 //=============================================================================

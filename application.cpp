@@ -18,6 +18,7 @@
 #include "camera.h"
 #include "bg.h"
 #include "effect_manager.h"
+#include "fade.h"
 #include <time.h>
 #include <assert.h>
 
@@ -53,7 +54,8 @@ CApplication::CApplication() :
 	m_pSound(nullptr),
 	m_pMode(nullptr),
 	m_pTexture(nullptr),
-	m_pCamera(nullptr)
+	m_pCamera(nullptr),
+	m_pFade(nullptr)
 {
 }
 
@@ -68,6 +70,7 @@ CApplication::~CApplication()
 	assert(m_pSound == nullptr);
 	assert(m_pInput == nullptr);
 	assert(m_pRenderer == nullptr);
+	assert(m_pFade == nullptr);
 }
 
 //--------------------------------------------------
@@ -135,6 +138,11 @@ HRESULT CApplication::Init(HINSTANCE hInstance, HWND hWnd)
 	// 生成
 	CObject::Create();
 
+	if (m_pFade == nullptr)
+	{
+		m_pFade = CFade::Create();
+	}
+
 	if (m_pMode == nullptr)
 	{// nullチェック
 		m_pMode = CMode::Create(CMode::MODE_TITLE);
@@ -156,8 +164,12 @@ void CApplication::Uninit()
 		m_pMode = nullptr;
 	}
 
+	m_pFade->Release();
+	m_pFade = nullptr;
+
 	// 破棄
 	CObject::Delete();
+
 
 	{
 		CEffectManager* pEffect = CEffectManager::GetInstanse();
