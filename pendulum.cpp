@@ -104,7 +104,7 @@ void CPendulum::Init()
 	pPendulum->SetTexture(CTexture::LABEL_Pien_White);
 
 	// ディスタンスの最大値
-	m_fMaxDistance = 1.0f / 0.05f * 20.0f;
+	m_fMaxDistance = 1.0f / 0.05f * 10.0f;
 }
 
 //=============================================================================
