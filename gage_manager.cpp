@@ -23,6 +23,7 @@
 #include "game.h"
 #include "score.h"
 #include "input.h"
+#include "locus.h"
 
 //=============================================================================
 // インスタンス生成
@@ -245,6 +246,12 @@ void CGageManager::Update()
 				m_pTwinCircle->Release();
 
 				m_type = MAX_GAGETYPE;
+				CLocus *pLocus = CLocus::Create();
+				pLocus->SetPos(D3DXVECTOR3(0.0f, -300.0f, 0.0f));
+				pLocus->SetLife(600);
+				pLocus->SetSpeed(15.0f);
+				pLocus->SetWaveSpeed(0.4f);
+				pLocus->SetWaveWidth(15.0f);
 			}
 		}
 		break;
