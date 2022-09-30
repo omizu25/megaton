@@ -39,7 +39,7 @@ public:
 
 	/* ↓メンバ関数↓ */
 public:
-	CObject2D();			// デフォルトコンストラクタ
+	CObject2D(CObject::ECategory cat = CObject::CATEGORY_2D);			// デフォルトコンストラクタ
 	~CObject2D() override;	// デストラクタ
 
 public: 

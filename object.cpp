@@ -150,6 +150,17 @@ void CObject::DrawAll()
 		// オブジェクトの描画
 		m_pObject[CATEGORY_2D][numObj]->Draw();
 	}
+
+	for (int numObj = 0; numObj < MAX_OBJECT[CATEGORY_FADE]; numObj++)
+	{
+		if (m_pObject[CATEGORY_FADE][numObj] == nullptr)
+		{// NULLチェック
+			continue;
+		}
+
+		// オブジェクトの描画
+		m_pObject[CATEGORY_FADE][numObj]->Draw();
+	}
 }
 
 //--------------------------------------------------
