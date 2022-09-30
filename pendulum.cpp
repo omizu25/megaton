@@ -115,7 +115,7 @@ void CPendulum::Update()
 	m_wave.y += 0.1f;
 	NormalizeAngle(&m_wave.x);
 	NormalizeAngle(&m_wave.y);
-	m_movePendulum.x = cosf(m_wave.x) * 10.0f;
+	m_movePendulum.x = cosf(m_wave.x) * 20.0f;
 	m_movePendulum.y = sinf(m_wave.y) * -10.0f;
 	// U‚èŽq‚ÌˆÚ“®
 	D3DXVECTOR3 pos = pPendulum->GetPos() + m_movePendulum;

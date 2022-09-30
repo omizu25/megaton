@@ -24,6 +24,7 @@
 #include "enemy.h"
 #include "gauge2D.h"
 #include "pendulum.h"
+#include "twin_circle.h"
 
 #include <assert.h>
 
@@ -119,14 +120,15 @@ void CGame::Init()
 	}
 
 	{// ゲージ
-		m_pGauge = CGauge2D::Create();
+		/*m_pGauge = CGauge2D::Create();
 		m_pGauge->SetPos(D3DXVECTOR3(640.0f, 500.0f, 0.0f));
 		m_pGauge->SetSize(D3DXVECTOR3(50.0f, 300.0f, 0.0f));
 		m_pGauge->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		m_pGauge->SetMaxNumber(100.0f);
 		m_pGauge->SetCoefficient(1.0f);
 
-		CPendulum *pPendulum = CPendulum::Create();
+		CPendulum *pPendulum = CPendulum::Create();*/
+		CTwinCircle *pTwinCircle = CTwinCircle::Create();
 	}
 
 	// BGM
@@ -238,15 +240,15 @@ void CGame::Update()
 	// タイムの減算
 	m_pTime->Update();
 
-	{// ゲージの更新
-		// サイズの更新
-		m_nGageWave++;
-		if (m_nGageWave >= 100)
-		{
-			m_nGageWave = 0;
-		}
-		m_pGauge->SetNumber((float)m_nGageWave);
-	}
+	//{// ゲージの更新
+	//	// サイズの更新
+	//	m_nGageWave++;
+	//	if (m_nGageWave >= 100)
+	//	{
+	//		m_nGageWave = 0;
+	//	}
+	//	m_pGauge->SetNumber((float)m_nGageWave);
+	//}
 
 	// 更新
 	CObject::UpdateAll();
