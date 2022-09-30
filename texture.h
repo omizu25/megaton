@@ -40,12 +40,16 @@ public:
 		LABEL_Retry,			// リトライ
 
 		/* ↓ハッカソン(2022/09/30)用↓ */
-		LABEL_PressAnyKey,	// 何かキーを押してね
+		LABEL_PressEnter,	// Enterを押してね
 		LABEL_Score,		// スコア
 		LABEL_Ranking,		// ランキング
 		LABEL_GameBg,		// ゲーム画面の背景
 		LABEL_NightSky,		// 夜空
 		LABEL_Hanabitutu,	// 花火筒
+		LABEL_Number_0to9,	// 0～9
+		LABEL_Pien_yellow,	// ぴえん(黄)
+		LABEL_Pien_white,	// ぴえん(白)
+		LABEL_Target,		// ターゲット
 
 		LABEL_MAX
 	};

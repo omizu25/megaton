@@ -24,16 +24,7 @@ class CTitle : public CMode
 {
 	/* 定義 */
 private:
-	enum ESelect
-	{
-		SELECT_NONE = -1,
-		SELECT_NORMAL = 0,	// 通常
-		SELECT_SAFETY_AREA,	// 安全エリア
-		SELECT_DANGER_AREA,	// 危険エリア
-		SELECT_RANKING,		// ランキング
-		SELECT_MAX
-	};
-
+	
 	/* ↓メンバ関数↓ */
 public:
 	CTitle();			// デフォルトコンストラクタ
