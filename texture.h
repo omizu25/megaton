@@ -45,6 +45,9 @@ public:
 		LABEL_Pien_white,	// ぴえん(白)
 		LABEL_Target,		// ターゲット
 		LABEL_Tutorial,		// タイミング良くEnterを押そう！
+		LABEL_Circle_Red,	// サークル(赤)
+		LABEL_Circle_Green,	// サークル(緑)
+		LABEL_Circle_Blue,	// サークル(青)
 
 		LABEL_MAX
 	};
