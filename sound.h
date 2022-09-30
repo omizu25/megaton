@@ -23,17 +23,17 @@ public:
 	enum ELabel
 	{
 		LABEL_NONE = -1,
-		LABEL_BGM_Title = 0,	// タイトル
-		LABEL_BGM_Game,			// ゲーム
-		LABEL_BGM_Result,		// リザルト
-		LABEL_SE_Enter,			// 決定
-		LABEL_SE_Select,		// 選択
-		LABEL_SE_Bullet,		// 弾
-		LABEL_SE_Bom,			// ボム
-		LABEL_SE_Explosion,		// エフェクト
-		LABEL_SE_Start,			// ゲーム開始
-		LABEL_SE_GameOver,		// ゲームオーバー
-		LABEL_SE_GameClear,		// ゲームクリア
+		LABEL_BGM_Title = 0,				// タイトル
+		LABEL_BGM_Game,						// ゲーム
+		LABEL_BGM_Result,					// リザルト
+		LABEL_SE_Enter,						// 決定
+		LABEL_SE_Select,					// 選択
+		LABEL_SE_Gauge,						// ゲージ
+		LABEL_SE_Gauge_Critical,			// ゲージ成功
+		LABEL_SE_Gauge_Halfway,				// ゲージ中途半端(真中)
+		LABEL_SE_Gauge_Failed,				// ゲージ失敗
+		LABEL_SE_Explosion_Before,			// 爆発前
+		LABEL_SE_Explosion,					// 爆発
 		LABEL_MAX,
 	};
 

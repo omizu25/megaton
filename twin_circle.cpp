@@ -151,7 +151,7 @@ void CTwinCircle::Update()
 	}
 	else if (!m_bAction)
 	{
-		m_nScore = 100 - (100 * m_fDistance / m_fMaxDistance);
+		m_nScore = 100 - (int)(100.0f * (m_fDistance / m_fMaxDistance));
 	}
 }
 
