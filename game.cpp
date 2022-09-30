@@ -85,6 +85,9 @@ void CGame::Init()
 
 	// BGM
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_BGM_Game);
+
+	// SE
+	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Enter);
 }
 
 //--------------------------------------------------

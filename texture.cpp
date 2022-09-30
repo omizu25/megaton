@@ -26,8 +26,6 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/title.png",		// タイトル
 	"data/TEXTURE/TEXT/rank.png",		// 位
 	"data/TEXTURE/TEXT/Comma.png",		// カンマ
-	"data/TEXTURE/TEXT/End.png",		// 終了
-	"data/TEXTURE/TEXT/Retry.png",		// リトライ
 
 	/* ↓ハッカソン(2022/09/30)用↓ */
 	"data/TEXTURE/TEXT/Hackathon_PressEnter.png",	// Enterを押してね
@@ -46,6 +44,8 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Hackathon_otowakka_2.png",		// サークル(青)
 	"data/TEXTURE/Hackathon_5shakuball.png",		// 打ち上げ花火の弾部分
 	"data/TEXTURE/Hackathon_TitleLogo.png",			// タイトルロゴ
+	"data/TEXTURE/TEXT/Hackathon_Retry.png",		// リトライ
+	"data/TEXTURE/TEXT/Hackathon_End.png",			// 終了
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");

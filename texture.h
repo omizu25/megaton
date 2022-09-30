@@ -30,8 +30,6 @@ public:
 		LABEL_Title,			// タイトル
 		LABEL_Rank,				// 位
 		LABEL_Comma,			// カンマ
-		LABEL_End,				// 終了
-		LABEL_Retry,			// リトライ
 
 		/* ↓ハッカソン(2022/09/30)用↓ */
 		LABEL_PressEnter,		// Enterを押してね
@@ -50,6 +48,8 @@ public:
 		LABEL_Circle_Blue,		// サークル(青)
 		LABEL_FireWork_Ball,	// 打ち上げ花火の弾部分
 		LABEL_TitleLogo,		// タイトルロゴ
+		LABEL_Retry,			// リトライ
+		LABEL_End,				// 終了
 
 		LABEL_MAX
 	};
