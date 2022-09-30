@@ -47,6 +47,8 @@ public:
 		LABEL_NightSky,		// –é‹ó
 		LABEL_Hanabitutu,	// ‰Ô‰Î“›
 		LABEL_Number_0to9,	// 0`9
+		LABEL_Pien_yellow,	// ‚Ò‚¦‚ñ(‰©)
+		LABEL_Pien_white,	// ‚Ò‚¦‚ñ(”’)
 
 		LABEL_MAX
 	};
