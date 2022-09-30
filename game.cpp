@@ -68,23 +68,6 @@ void CGame::Init()
 		CBG::Create(CTexture::LABEL_GameBg);
 	}
 
-	{// ƒQ[ƒW˜g
-		D3DXVECTOR3 pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(60.0f, 410.0f, 0.0f);			// ‘å‚«‚³
-		CGauge2D* m_pGauge2D = CGauge2D::Create();
-		m_pGauge2D->SetPos(D3DXVECTOR3(pos.x, pos.y + size.y / 4.1f, 0.0f));
-		m_pGauge2D->SetChange(false, size);
-	}
-
-	{// ƒQ[ƒW”wŒi
-		D3DXVECTOR3 pos = D3DXVECTOR3(640.0f, 360.0f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(50.0f, 400.0f, 0.0f);			// ‘å‚«‚³
-		CGauge2D* m_pGauge2D = CGauge2D::Create();
-		m_pGauge2D->SetPos(D3DXVECTOR3(pos.x, pos.y + size.y / 4.0f, 0.0f));
-		m_pGauge2D->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
-		m_pGauge2D->SetChange(false, size);
-	}
-
 	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
 	float width = (float)CApplication::SCREEN_WIDTH * 0.9f;
 	float height = 0.0f;

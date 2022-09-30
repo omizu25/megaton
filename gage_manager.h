@@ -77,6 +77,8 @@ private:
 	// メンバ変数
 	//--------------------------------------------------------------------
 	CGauge2D		*m_pGauge2D;		// ターゲット
+	CGauge2D		*m_pMax;		// ターゲット
+	CGauge2D		*m_pFrame;		// ターゲット
 	CPendulum		*m_pPendulum;		// 振り子
 	CTwinCircle		*m_pTwinCircle;		// サークル
 	D3DXVECTOR3		m_pos;				// 位置
