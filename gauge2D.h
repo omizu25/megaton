@@ -66,6 +66,7 @@ public:
 	void SetMaxNumber(const float fMaxNumber);												// ”’l‚ÌÅ‘å
 	void SetNumber(const float fNumber) { m_fDestNumber = fNumber; }						// ”’l‚Ìİ’è
 	void SetCoefficient(const float fCoefficient) { m_fCoefficient = fCoefficient; }		// Œ¸ŠŒW”‚Ìİ’è
+	int GetNumber() { return (int)m_fDestNumber; }
 
 protected:
 	//--------------------------------------------------------------------

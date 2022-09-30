@@ -35,11 +35,13 @@
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CGame::CGame() : CMode(CMode::MODE_GAME),
-	m_pScore(nullptr),
-	m_pBestScore(nullptr),
 	m_time(0),
 	m_end(false)
 {
+	for (int i = 0; i < CGageManager::MAX_GAGETYPE; i++)
+	{
+		m_pScore[i] = nullptr;
+	}
 }
 
 //--------------------------------------------------
@@ -47,8 +49,10 @@ CGame::CGame() : CMode(CMode::MODE_GAME),
 //--------------------------------------------------
 CGame::~CGame()
 {
-	assert(m_pScore == nullptr);
-	assert(m_pBestScore == nullptr);
+	for (int i = 0; i < CGageManager::MAX_GAGETYPE; i++)
+	{
+		m_pScore[i] = nullptr;
+	}
 }
 
 //--------------------------------------------------
@@ -63,29 +67,18 @@ void CGame::Init()
 		CBG::Create(CTexture::LABEL_GameBg);
 	}
 
+	D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
+	float width = (float)CApplication::SCREEN_WIDTH * 0.9f;
+	float height = 0.0f;
+
+	for (int i = 0; i < CGageManager::MAX_GAGETYPE; i++)
 	{// スコア
-		D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
-		float width = (float)CApplication::SCREEN_WIDTH;
-		float height = CScore::STD_HEIGHT * 0.5f + 10.0f;
+		height = (float)CApplication::SCREEN_HEIGHT * 0.35f + (150.0f * i);
 
 		// スコアの生成
-		m_pScore = CScore::Create(D3DXVECTOR3(width, height, 0.0f), size);
+		m_pScore[i] = CScore::Create(D3DXVECTOR3(width, height, 0.0f), size);
 	}
 	
-	{// ベストスコア
-		D3DXVECTOR3 size = D3DXVECTOR3(CScore::STD_WIDTH, CScore::STD_HEIGHT, 0.0f);
-		int score = CRankingUI::Get(0);
-
-		float width = (size.x * Digit(score)) + (((Digit(score) - 1) / 3) * (size.x * 0.5f));
-		float height = size.y * 0.5f + 10.0f;
-
-		// ベストスコアの生成
-		m_pBestScore = CScore::Create(D3DXVECTOR3(width, height, 0.0f), size);
-
-		// スコアの設定
-		m_pBestScore->Set(score);
-	}
-
 	{// ゲージマネージャー
 		m_pGageManager = CGageManager::Create();
 	}
@@ -98,22 +91,25 @@ void CGame::Init()
 // 終了
 //--------------------------------------------------
 void CGame::Uninit()
-{	
-	// ランキングの設定
-	CRankingUI::Set(m_pScore->Get());
+{
+	int score = 0;
 
-	if (m_pBestScore != nullptr)
-	{// nullチェック
-		m_pBestScore->Uninit();
-		delete m_pBestScore;
-		m_pBestScore = nullptr;
+	for (int i = 0; i < CGageManager::MAX_GAGETYPE; i++)
+	{
+		score += m_pScore[i]->Get();
 	}
 
-	if (m_pScore != nullptr)
-	{// nullチェック
-		m_pScore->Uninit();
-		delete m_pScore;
-		m_pScore = nullptr;
+	// ランキングの設定
+	CRankingUI::Set(score);
+
+	for (int i = 0; i < CGageManager::MAX_GAGETYPE; i++)
+	{
+		if (m_pScore[i] != nullptr)
+		{// nullチェック
+			m_pScore[i]->Uninit();
+			delete m_pScore[i];
+			m_pScore[i] = nullptr;
+		}
 	}
 
 	// 全ての解放
@@ -160,9 +156,9 @@ void CGame::Draw()
 //--------------------------------------------------
 // スコアの取得
 //--------------------------------------------------
-CScore* CGame::GetScore()
+CScore* CGame::GetScore(CGageManager::GAGE_TYPE type)
 {
-	return m_pScore;
+	return m_pScore[type];
 }
 
 //--------------------------------------------------

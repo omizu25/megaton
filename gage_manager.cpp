@@ -21,6 +21,7 @@
 #include "application.h"
 #include "mode.h"
 #include "game.h"
+#include "score.h"
 #include "input.h"
 
 //=============================================================================
@@ -143,6 +144,11 @@ void CGageManager::Update()
 		{
 			m_bKeyPress = false;
 			m_nScore += m_nCntGage;
+			CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
+
+			// スコアの加算
+			pGame->GetScore(GAGE_POLE)->Set(m_pGauge2D->GetNumber());
+
 			m_pGauge2D->Release();
 
 			m_pPendulum = CPendulum::Create();
@@ -155,10 +161,16 @@ void CGageManager::Update()
 		{
 			m_bKeyPress = false;
 			m_nScore += m_pPendulum->GetScore();
+
+			CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
+
+			// スコアの加算
+			pGame->GetScore(GAGE_PENDULUM)->Set(m_pPendulum->GetScore());
 			m_pPendulum->Release();
 
 			m_pTwinCircle = CTwinCircle::Create();
 			m_type = GAGE_TWINCIRCLE;
+
 		}
 		break;
 
@@ -167,6 +179,11 @@ void CGageManager::Update()
 		{
 			m_bKeyPress = false;
 			m_nScore += m_pTwinCircle->GetScore();
+			CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
+
+			// スコアの加算
+			pGame->GetScore(GAGE_PENDULUM)->Set(m_pTwinCircle->GetScore());
+
 			m_pTwinCircle->Release();
 
 			m_type = MAX_GAGETYPE;

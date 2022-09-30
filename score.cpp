@@ -18,8 +18,8 @@
 //==================================================
 // íËã`
 //==================================================
-const float CScore::STD_WIDTH = 30.0f;
-const float CScore::STD_HEIGHT = 40.0f;
+const float CScore::STD_WIDTH = 80.0f;
+const float CScore::STD_HEIGHT = 120.0f;
 
 //--------------------------------------------------
 // ê∂ê¨
