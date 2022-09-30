@@ -80,7 +80,7 @@ void CRanking::Init()
 		CObject2D* pObj = CObject2D::Create();
 		pObj->SetPos(D3DXVECTOR3(width, height, 0.0f));
 		pObj->SetSize(D3DXVECTOR3(450.0f, 150.0f, 0.0f));
-		pObj->SetTexture(CTexture::LABEL_Rankig_Result);
+		pObj->SetTexture(CTexture::LABEL_Ranking);
 		pObj->SetFade(0.0f);
 	}
 

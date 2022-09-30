@@ -24,19 +24,24 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Tutorial.png",	// 通常のチュートリアル
 
 	/* ↓テキスト↓ */
-	"data/TEXTURE/TEXT/Number.png",			// 数
-	"data/TEXTURE/TEXT/PressAny.png",		// PressAny
-	"data/TEXTURE/TEXT/title.png",			// タイトル
-	"data/TEXTURE/TEXT/rank.png",			// 位
-	"data/TEXTURE/TEXT/Ranking_Result.png",	// リザルト用のランキング
-	"data/TEXTURE/TEXT/NewScore.png",		// 新しいスコア
-	"data/TEXTURE/TEXT/Comma.png",			// カンマ
-	"data/TEXTURE/TEXT/Period.png",			// ピリオド
-	"data/TEXTURE/TEXT/Pause.png",			// ポーズ
-	"data/TEXTURE/TEXT/Resume.png",			// 再開
-	"data/TEXTURE/TEXT/Restart.png",		// リスタート
-	"data/TEXTURE/TEXT/End.png",			// 終了
-	"data/TEXTURE/TEXT/Retry.png",			// リトライ
+	"data/TEXTURE/TEXT/Number.png",		// 数
+	"data/TEXTURE/TEXT/title.png",		// タイトル
+	"data/TEXTURE/TEXT/rank.png",		// 位
+	"data/TEXTURE/TEXT/Comma.png",		// カンマ
+	"data/TEXTURE/TEXT/Period.png",		// ピリオド
+	"data/TEXTURE/TEXT/Pause.png",		// ポーズ
+	"data/TEXTURE/TEXT/Resume.png",		// 再開
+	"data/TEXTURE/TEXT/Restart.png",	// リスタート
+	"data/TEXTURE/TEXT/End.png",		// 終了
+	"data/TEXTURE/TEXT/Retry.png",		// リトライ
+
+	/* ↓ハッカソン(2022/09/30)用↓ */
+	"data/TEXTURE/TEXT/Hackathon_PressAnyKey.png",	// 何かキーを押してね
+	"data/TEXTURE/TEXT/Hackathon_Score.png",		// スコア
+	"data/TEXTURE/TEXT/Hackathon_Ranking.png",		// ランキング
+	"data/TEXTURE/TEXT/Hachathon_GameBg.png",		// ゲーム画面の背景
+	"data/TEXTURE/TEXT/Hachathon_NightSky.png",		// 夜空
+	"data/TEXTURE/TEXT/hanabitutu.png",				// 花火筒
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");
