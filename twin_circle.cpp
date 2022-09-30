@@ -51,6 +51,7 @@ CTwinCircle * CTwinCircle::Create(void)
 //=============================================================================
 CTwinCircle::CTwinCircle(CObject::ECategory cat) : CObject(cat)
 {
+	pTarget = nullptr;									// ターゲット
 	pTarget0 = nullptr;									// ターゲット
 	pTarget1 = nullptr;									// ターゲット1
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 位置
@@ -89,6 +90,12 @@ void CTwinCircle::Init()
 	m_pos = D3DXVECTOR3(fPosX, fPosY, 0.0f);			// 位置
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);				// 向き
 	m_size = D3DXVECTOR3(200.0f, 200.0f, 0.0f);			// 大きさ
+
+	// ターゲットオブジェクトの設定
+	pTarget0 = CObject2D::Create();
+	pTarget0->SetPos(m_pos);
+	pTarget0->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
+	pTarget0->SetTexture(CTexture::LABEL_Circle_Green);
 
 	// ターゲットオブジェクト0の設定
 	pTarget0 = CObject2D::Create();

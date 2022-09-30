@@ -72,7 +72,7 @@ void CFade::Init()
 	CObject2D::Init();
 
 	// フェード完了までの時間
-	m_nFadeFrame = 30;					
+	m_nFadeFrame = 30;
 	m_bFade = false;
 
 	// 頂点バッファの設定
