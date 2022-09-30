@@ -87,6 +87,7 @@ private:
 	int				m_nCntGage;			// ゲージのカウント
 	int				m_nCntFrame;		// フレームカウント
 	bool			m_bKeyPress;		// ボタンを押したか
+	bool			m_end;				// 終了したかどうか
 };
 
 #endif

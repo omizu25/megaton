@@ -17,6 +17,7 @@
 //==================================================
 class CRankingUI;
 class CMenu;
+class CScore;
 
 //==================================================
 // 定義
@@ -27,10 +28,8 @@ class CRanking : public CMode
 private:
 	enum ESelect
 	{
-		SELECT_NONE = -1,
-		SELECT_NORMAL = 0,	// 通常
-		SELECT_SAFETY_AREA,	// 安全エリア
-		SELECT_DANGER_AREA,	// 危険エリア
+		SELECT_NONE = -1,	// 使用しない
+		SELECT_RETRY = 0,	// リトライ
 		SELECT_END,			// 終了
 		SELECT_MAX
 	};
@@ -52,10 +51,9 @@ private:
 	/* メンバ変数 */
 private:
 	CRankingUI* m_pRanking;	// ランキング
+	CScore* m_pScore;		// 今回のスコア
 	CMenu* m_pMenu;			// メニュー
-	D3DXCOLOR m_col;		// 色
 	int m_time;				// 時間
-	int m_partCnt;			// パーティクルカウンター
 };
 
 #endif // !_RANKING_H_

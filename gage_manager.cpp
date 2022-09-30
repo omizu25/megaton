@@ -19,6 +19,8 @@
 #include "object2D.h"
 #include "renderer.h"
 #include "application.h"
+#include "mode.h"
+#include "game.h"
 #include "input.h"
 
 //=============================================================================
@@ -64,6 +66,7 @@ CGageManager::CGageManager(CObject::ECategory cat) : CObject(cat)
 	m_nCntGage = 0;								// ゲージのカウント
 	m_nCntFrame = 0;							// フレームカウント
 	m_bKeyPress = false;						// ボタンを押したか
+	m_end = false;
 }
 
 //=============================================================================
@@ -94,6 +97,8 @@ void CGageManager::Init()
 	m_pGauge2D->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y + m_size.y / 2.0f, 0.0f));
 	m_pGauge2D->SetMaxNumber(100.0f);
 	m_pGauge2D->SetCoefficient(1.0f);
+
+	m_end = false;
 }
 
 //=============================================================================
@@ -191,7 +196,15 @@ void CGageManager::Update()
 		break;
 
 	case CGageManager::MAX_GAGETYPE:
-
+	
+		if (!m_end)
+		{
+			m_end = true;
+			// モードの変更
+			CGame* pGame = (CGame*)CApplication::GetInstanse()->GetMode();
+			pGame->EndGame();
+		}
+	
 		break;
 
 	default:
