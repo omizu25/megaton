@@ -34,9 +34,9 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Hachathon_NightSky.jpg",		// 夜空
 	"data/TEXTURE/hanabitutu.png",					// 花火筒
 	"data/TEXTURE/TEXT/Hackathon_Number.png",		// 0～9
-	"data/TEXTURE/Hachathon_Pien_yellow.png",		// ぴえん(黄)
-	"data/TEXTURE/Hachathon_Pien_white.png",		// ぴえん(白)
-	"data/TEXTURE/Hachathon_Target.png",			// ターゲット
+	"data/TEXTURE/Hackathon_pien_yellow.png",		// ぴえん(黄)
+	"data/TEXTURE/Hackathon_pien_white.png",		// ぴえん(白)
+	"data/TEXTURE/Hackathon_Terget.png",			// ターゲット
 	"data/TEXTURE/TEXT/Hackathon_Tutorial.png",		// タイミング良くEnterを押そう！
 	"data/TEXTURE/Hackathon_otowakka_0.png",		// サークル(赤)
 	"data/TEXTURE/Hackathon_otowakka_1.png",		// サークル(緑)
