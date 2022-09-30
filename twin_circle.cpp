@@ -93,11 +93,13 @@ void CTwinCircle::Init()
 	pTarget0 = CObject2D::Create();
 	pTarget0->SetPos(m_pos);
 	pTarget0->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
+	pTarget0->SetTexture(CTexture::LABEL_Target);
 
 	// ターゲットオブジェクト1の設定
 	pTarget1 = CObject2D::Create();
 	pTarget1->SetPos(m_pos);
 	pTarget1->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
+	pTarget1->SetTexture(CTexture::LABEL_Target);
 
 	// ディスタンスの最大値
 	float fMaxDistanceX = 1.0f / 0.1f * 18.0f;
