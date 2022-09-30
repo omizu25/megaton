@@ -34,20 +34,22 @@ public:
 		LABEL_Retry,			// リトライ
 
 		/* ↓ハッカソン(2022/09/30)用↓ */
-		LABEL_PressEnter,	// Enterを押してね
-		LABEL_Score,		// スコア
-		LABEL_Ranking,		// ランキング
-		LABEL_GameBg,		// ゲーム画面の背景
-		LABEL_NightSky,		// 夜空
-		LABEL_Hanabitutu,	// 花火筒
-		LABEL_Number_0to9,	// 0～9
-		LABEL_Pien_yellow,	// ぴえん(黄)
-		LABEL_Pien_white,	// ぴえん(白)
-		LABEL_Target,		// ターゲット
-		LABEL_Tutorial,		// タイミング良くEnterを押そう！
-		LABEL_Circle_Red,	// サークル(赤)
-		LABEL_Circle_Green,	// サークル(緑)
-		LABEL_Circle_Blue,	// サークル(青)
+		LABEL_PressEnter,		// Enterを押してね
+		LABEL_Score,			// スコア
+		LABEL_Ranking,			// ランキング
+		LABEL_GameBg,			// ゲーム画面の背景
+		LABEL_NightSky,			// 夜空
+		LABEL_Hanabitutu,		// 花火筒
+		LABEL_Number_0to9,		// 0～9
+		LABEL_Pien_yellow,		// ぴえん(黄)
+		LABEL_Pien_white,		// ぴえん(白)
+		LABEL_Target,			// ターゲット
+		LABEL_Tutorial,			// タイミング良くEnterを押そう！
+		LABEL_Circle_Red,		// サークル(赤)
+		LABEL_Circle_Green,		// サークル(緑)
+		LABEL_Circle_Blue,		// サークル(青)
+		LABEL_FireWork_Ball,	// 打ち上げ花火の弾部分
+		LABEL_TitleLogo,		// タイトルロゴ
 
 		LABEL_MAX
 	};

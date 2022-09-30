@@ -44,6 +44,8 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/Hackathon_otowakka_0.png",		// サークル(赤)
 	"data/TEXTURE/Hackathon_otowakka_1.png",		// サークル(緑)
 	"data/TEXTURE/Hackathon_otowakka_2.png",		// サークル(青)
+	"data/TEXTURE/Hackathon_5shakuball.png",		// 打ち上げ花火の弾部分
+	"data/TEXTURE/Hackathon_TitleLogo.png",			// タイトルロゴ
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");
