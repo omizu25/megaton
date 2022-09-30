@@ -46,6 +46,7 @@ public:
 		LABEL_GameBg,		// ƒQ[ƒ€‰æ–Ê‚Ì”wŒi
 		LABEL_NightSky,		// –é‹ó
 		LABEL_Hanabitutu,	// ‰Ô‰Î“›
+		LABEL_Number_0to9,	// 0`9
 
 		LABEL_MAX
 	};

@@ -42,6 +42,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Hachathon_GameBg.png",		// ƒQ[ƒ€‰æ–Ê‚Ì”wŒi
 	"data/TEXTURE/TEXT/Hachathon_NightSky.png",		// –é‹ó
 	"data/TEXTURE/TEXT/hanabitutu.png",				// ‰Ô‰Î“›
+	"data/TEXTURE/TEXT/Hachathon_Number.png",		// 0`9
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");
