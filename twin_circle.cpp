@@ -102,8 +102,8 @@ void CTwinCircle::Init()
 	pTarget1->SetTexture(CTexture::LABEL_Target);
 
 	// ディスタンスの最大値
-	float fMaxDistanceX = 1.0f / 0.1f * 18.0f;
-	float fMaxDistanceY = 1.0f / 0.1f * 15.0f;
+	float fMaxDistanceX = 1.0f / 0.1f * 10.0f;
+	float fMaxDistanceY = 1.0f / 0.1f * 30.0f;
 	m_fMaxDistance = sqrtf(fMaxDistanceX * fMaxDistanceX + fMaxDistanceY * fMaxDistanceY);
 }
 
