@@ -9,12 +9,13 @@
 // インクルード
 //==================================================
 #include "bg.h"
+#include "application.h"
 #include <assert.h>
 
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CBG* CBG::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& size)
+CBG* CBG::Create(CTexture::ELabel texture)
 {
 	CBG* pBG = nullptr;
 
@@ -23,8 +24,9 @@ CBG* CBG::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& size)
 	if (pBG != nullptr)
 	{// nullチェック
 		pBG->Init();
-		pBG->SetPos(pos);
-		pBG->SetSize(size);
+
+		// テクスチャの設定
+		pBG->SetTexture(texture);
 	}
 
 	return pBG;
@@ -52,14 +54,8 @@ void CBG::Init()
 	// 初期化
 	CObject3D::Init();
 
-	// テクスチャの設定
-	CObject3D::SetTexture(CTexture::LABEL_BG);
-
-	// 色の設定
-	CObject3D::SetCol(D3DXCOLOR(0.5f, 0.25f, 1.0f, 0.8f));
-
-	// キープの設定
-	CObject::SetKeep(true);
+	// サイズの設定
+	CObject3D::SetSize(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f));
 }
 
 //--------------------------------------------------

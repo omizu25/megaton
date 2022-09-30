@@ -11,7 +11,6 @@
 #include "game.h"
 #include "application.h"
 #include "camera.h"
-#include "player.h"
 #include "number_manager.h"
 #include "time.h"
 #include "score.h"
@@ -39,7 +38,6 @@ const int CGame::PAUSE_TIME = 100;
 //--------------------------------------------------
 CGame::CGame() : CMode(CMode::MODE_GAME),
 	m_pPauseBG(nullptr),
-	m_pPlayer(nullptr),
 	m_pPause(nullptr),
 	m_pTime(nullptr),
 	m_pScore(nullptr),
@@ -55,7 +53,6 @@ CGame::CGame() : CMode(CMode::MODE_GAME),
 CGame::~CGame()
 {
 	assert(m_pPauseBG == nullptr);
-	assert(m_pPlayer == nullptr);
 	assert(m_pPause == nullptr);
 	assert(m_pTime == nullptr);
 	assert(m_pScore == nullptr);
@@ -88,12 +85,6 @@ void CGame::Init()
 
 		// 描画の設定
 		m_pPauseBG->SetDraw(false);
-	}
-
-	if (m_pPlayer == nullptr)
-	{// nullチェック
-		// 生成
-		m_pPlayer = CPlayer::Create();
 	}
 
 	{// タイム
@@ -184,11 +175,6 @@ void CGame::Uninit()
 	// 全ての解放
 	CObject::ReleaseAll(false);
 
-	if (m_pPlayer != nullptr)
-	{// nullチェック
-		m_pPlayer = nullptr;
-	}
-
 	if (m_pPauseBG != nullptr)
 	{// nullチェック
 		m_pPauseBG = nullptr;
@@ -203,11 +189,6 @@ void CGame::Uninit()
 //--------------------------------------------------
 void CGame::Update()
 {
-	if (m_pPlayer == nullptr)
-	{// nullチェック
-		return;
-	}
-
 	if (m_pPause != nullptr)
 	{// nullチェック
 		// 更新
@@ -294,9 +275,6 @@ void CGame::Draw()
 //--------------------------------------------------
 void CGame::Reset()
 {
-	// プレイヤーの生成
-	m_pPlayer = CPlayer::Create();
-
 	// 敵の全ての解放
 	CObject3D::ReleaseAll(CObject3D::TYPE_ENEMY);
 
@@ -308,14 +286,6 @@ void CGame::Reset()
 
 	// SE
 	CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Start);
-}
-
-//--------------------------------------------------
-// プレイヤーの取得
-//--------------------------------------------------
-CPlayer* CGame::GetPlayer()
-{
-	return m_pPlayer;
 }
 
 //--------------------------------------------------

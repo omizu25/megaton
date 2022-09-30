@@ -19,8 +19,6 @@ class CObject2D;
 class CPause;
 class CTime;
 class CScore;
-class CPlayer;
-class CGauge2D;
 
 //==================================================
 // 定義
@@ -47,7 +45,6 @@ public:
 	void Reset();	// リセット
 
 public:
-	CPlayer* GetPlayer();	// プレイヤーの取得
 	CScore* GetScore();		// スコアの取得
 	CTime* GetTime();		// タイムの取得
 
@@ -57,14 +54,11 @@ private:
 	/* ↓メンバ変数↓ */
 private:
 	CObject2D* m_pPauseBG;	// ポーズの背景
-	CPlayer* m_pPlayer;		// プレイヤー
 	CPause* m_pPause;		// ポーズ
 	CTime* m_pTime;			// タイム
 	CScore* m_pScore;		// スコア
 	CScore* m_pBestScore;	// ベストスコア
 	int m_time;	//タイム
-	CGauge2D *m_pGauge;	// ゲージ
-	int m_nGageWave;	// ゲージのサイズ
 };
 
 #endif // !_GAME_H_

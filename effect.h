@@ -52,7 +52,6 @@ public:
 	const D3DXCOLOR& GetCol() const;	// 色の取得
 	const D3DXVECTOR3& GetMove() const;	// 移動量の取得
 	const D3DXVECTOR2& GetSize() const;	// サイズの取得
-	void SetCollision(bool collision);	// 当たり判定の設定
 	void SetColSubtract(bool subtract);	// 色の減算の設定
 
 	/* ↓メンバ変数↓ */
@@ -62,7 +61,6 @@ private:
 	D3DXVECTOR2 m_size;	// サイズ
 	D3DXCOLOR m_col;	// 色
 	int m_life;			// 寿命
-	bool m_collision;	// 当たり判定をするかどうか
 	bool m_colSubtract;	// 色の減算をするかどうか
 };
 

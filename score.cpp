@@ -146,8 +146,6 @@ void CScore::Release()
 //--------------------------------------------------
 void CScore::Add(int score)
 {
-	CMode* pMode = CApplication::GetInstanse()->GetMode();
-
 	// ‰ÁŽZ
 	CNumberManager::Add(score);
 

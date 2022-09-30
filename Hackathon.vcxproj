@@ -26,7 +26,6 @@
     <ClCompile Include="effect_manager.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="gauge2D.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="inputjoypad.cpp" />
     <ClCompile Include="inputkeyboard.cpp" />
@@ -40,8 +39,6 @@
     <ClCompile Include="object2D.cpp" />
     <ClCompile Include="object3D.cpp" />
     <ClCompile Include="pause.cpp" />
-    <ClCompile Include="pendulum.cpp" />
-    <ClCompile Include="player.cpp" />
     <ClCompile Include="ranking.cpp" />
     <ClCompile Include="rankingUI.cpp" />
     <ClCompile Include="renderer.cpp" />
@@ -62,7 +59,6 @@
     <ClInclude Include="effect_manager.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="gauge2D.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="inputjoypad.h" />
     <ClInclude Include="inputkeyboard.h" />
@@ -76,8 +72,6 @@
     <ClInclude Include="object2D.h" />
     <ClInclude Include="object3D.h" />
     <ClInclude Include="pause.h" />
-    <ClInclude Include="pendulum.h" />
-    <ClInclude Include="player.h" />
     <ClInclude Include="ranking.h" />
     <ClInclude Include="rankingUI.h" />
     <ClInclude Include="renderer.h" />

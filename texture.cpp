@@ -18,32 +18,16 @@
 //==================================================
 const char* CTexture::FILE_NAME[] =
 {// テクスチャのパス
-	"data/TEXTURE/Player.png",				// プレイヤー
-	"data/TEXTURE/Bullet.png",				// 弾
-	"data/TEXTURE/effect.jpg",				// エフェクト
-	"data/TEXTURE/bg.png",					// 背景
-	"data/TEXTURE/Cursor.png",				// カーソル
-	"data/TEXTURE/TutorialNormal.png",		// 通常のチュートリアル
-	"data/TEXTURE/TutorialSafetyArea.png",	// 安全エリアのチュートリアル
-	"data/TEXTURE/TutorialDangerArea.png",	// 危険エリアのチュートリアル
-	"data/TEXTURE/Circle.png",				// 円
-	"data/TEXTURE/Bom.png",					// ボム
-
-	/* ↓敵↓ */
-	"data/TEXTURE/Homing.png",			// ホーミング
-	"data/TEXTURE/HomingEscape.png",	// 逃げるホーミング
-	"data/TEXTURE/HomingDivision.png",	// 分裂ホーミング
-	"data/TEXTURE/PaperAirplane.png",	// 紙飛行機
-	"data/TEXTURE/Windmill.png",		// 風車
-	"data/TEXTURE/snake_body.png",		// 蛇の体
+	"data/TEXTURE/effect.jpg",		// エフェクト
+	"data/TEXTURE/bg000.png",		// 背景
+	"data/TEXTURE/Cursor.png",		// カーソル
+	"data/TEXTURE/Tutorial.png",	// 通常のチュートリアル
 
 	/* ↓テキスト↓ */
 	"data/TEXTURE/TEXT/Number.png",			// 数
-	"data/TEXTURE/TEXT/result.png",			// リザルト
+	"data/TEXTURE/TEXT/PressAny.png",		// PressAny
 	"data/TEXTURE/TEXT/title.png",			// タイトル
-	"data/TEXTURE/TEXT/mul.png",			// 掛ける
 	"data/TEXTURE/TEXT/rank.png",			// 位
-	"data/TEXTURE/TEXT/Ranking_Title.png",	// タイトル用のランキング
 	"data/TEXTURE/TEXT/Ranking_Result.png",	// リザルト用のランキング
 	"data/TEXTURE/TEXT/NewScore.png",		// 新しいスコア
 	"data/TEXTURE/TEXT/Comma.png",			// カンマ
@@ -52,11 +36,7 @@ const char* CTexture::FILE_NAME[] =
 	"data/TEXTURE/TEXT/Resume.png",			// 再開
 	"data/TEXTURE/TEXT/Restart.png",		// リスタート
 	"data/TEXTURE/TEXT/End.png",			// 終了
-	"data/TEXTURE/TEXT/End_Ranking.png",	// ランキング用の終了
 	"data/TEXTURE/TEXT/Retry.png",			// リトライ
-	"data/TEXTURE/TEXT/Normal.png",			// 通常
-	"data/TEXTURE/TEXT/SafetyArea.png",		// 安全エリア
-	"data/TEXTURE/TEXT/DangerArea.png",		// 危険エリア
 };
 
 static_assert(sizeof(CTexture::FILE_NAME) / sizeof(CTexture::FILE_NAME[0]) == CTexture::LABEL_MAX, "aho");

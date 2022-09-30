@@ -68,7 +68,6 @@ CEffect::CEffect() : CObject(CObject::CATEGORY_EFFECT),
 	m_size(D3DXVECTOR2(0.0f, 0.0f)),
 	m_col(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)),
 	m_life(0),
-	m_collision(false),
 	m_colSubtract(false)
 {
 	m_numAll++;
@@ -93,7 +92,6 @@ void CEffect::Init()
 	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	m_life = MAX_LIFE;
 	m_colSubtract = true;
-	m_collision = true;
 
 	// キープの設定
 	CObject::SetKeep(true);
@@ -124,24 +122,28 @@ void CEffect::Update()
 	//慣性・移動量を更新 (減衰させる)
 	m_move.x += (0.0f - m_move.x) * 0.05f;
 	m_move.y += (0.0f - m_move.y) * 0.05f;
-	
-	float len = STD_HEIGHT * D3DXVec3Length(&m_move);
-
-	if (len >= STD_HEIGHT)
-	{// 指定の値よりも大きい
-		len = STD_HEIGHT;
-	}
-	else if (len <= MIN_WIDTH)
-	{// 指定の値よりも小さい
-		len = MIN_WIDTH;
-	}
-
-	m_size.y = len;
+	float ratio = ((float)(MAX_LIFE - m_life) / MAX_LIFE);
+	m_col.a = 1.0f - (ratio * ratio);
 
 	if (m_colSubtract)
 	{// 色の減算
-		float ratio = ((float)(MAX_LIFE - m_life) / MAX_LIFE);
-		m_col.a = 1.0f - (ratio * ratio);
+
+		float len = STD_HEIGHT * D3DXVec3Length(&m_move);
+
+		if (len >= STD_HEIGHT)
+		{// 指定の値よりも大きい
+			len = STD_HEIGHT;
+		}
+		else if (len <= STD_WIDTH)
+		{// 指定の値よりも小さい
+			len = STD_WIDTH;
+		}
+
+		m_size.y = len;
+	}
+	else
+	{
+		m_size = D3DXVECTOR2(STD_WIDTH, STD_WIDTH);
 	}
 }
 
@@ -183,14 +185,6 @@ const D3DXVECTOR3& CEffect::GetMove() const
 const D3DXVECTOR2& CEffect::GetSize() const
 {
 	return m_size;
-}
-
-//--------------------------------------------------
-// 当たり判定の設定
-//--------------------------------------------------
-void CEffect::SetCollision(bool collision)
-{
-	m_collision = collision;
 }
 
 //--------------------------------------------------

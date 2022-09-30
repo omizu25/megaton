@@ -17,6 +17,7 @@
 #include "menu.h"
 #include "sound.h"
 #include "game.h"
+#include "bg.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -24,7 +25,6 @@
 //--------------------------------------------------
 CTitle::CTitle() : CMode(CMode::MODE_TITLE),
 	m_pMenu(nullptr),
-	m_col(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)),
 	m_time(0),
 	m_partCnt(0)
 {
@@ -44,29 +44,26 @@ void CTitle::Init()
 {
 	m_time = 0;
 	m_partCnt = 0;
-	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+	{// 背景
+		//CBG::Create(CTexture::LABEL_BG);
+	}
 
 	CObject2D* pTitle = CObject2D::Create();
-	pTitle->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.3f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f));
-	pTitle->SetSize(D3DXVECTOR3(750.0f, 250.0f, 0.0f));
+	pTitle->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.25f, 0.0f));
+	pTitle->SetSize(D3DXVECTOR3(1000.0f, 250.0f, 0.0f));
 	pTitle->SetTexture(CTexture::LABEL_Title);
 	pTitle->SetFade(0.0f);
 
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.85f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(350.0f, 100.0f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.85f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(600.0f, 150.0f, 0.0f);
 
 		// メニューの生成
-		m_pMenu = CMenu::Create(pos, size, ESelect::SELECT_MAX, 50.0f, true, true);
-
-		// 枠の設定
-		m_pMenu->SetFrame(D3DXVECTOR3(600.0f, (float)CApplication::SCREEN_HEIGHT, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+		m_pMenu = CMenu::Create(pos, size, 1, 0.0f, true, false);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(ESelect::SELECT_NORMAL, CTexture::LABEL_Normal);
-		m_pMenu->SetTexture(ESelect::SELECT_SAFETY_AREA, CTexture::LABEL_SafetyArea);
-		m_pMenu->SetTexture(ESelect::SELECT_DANGER_AREA, CTexture::LABEL_DangerArea);
-		m_pMenu->SetTexture(ESelect::SELECT_RANKING, CTexture::LABEL_Rankig_Title);
+		m_pMenu->SetTexture(0, CTexture::LABEL_Title);
 	}
 
 	// BGM
@@ -157,20 +154,11 @@ void CTitle::Effect()
 {
 	m_time++;
 
-	if ((m_time % 13) != 0)
+	if ((m_time % 120) != 0)
 	{// 一定間隔待ち
 		return;
 	}
 
-	if (m_partCnt % 15 == 0)
-	{// 一定間隔
-		m_col.r = FloatRandom(1.0f, 0.0f);
-		m_col.g = FloatRandom(1.0f, 0.0f);
-		m_col.b = FloatRandom(1.0f, 0.0f);
-	}
-
-	m_partCnt++;
-
 	// パーティクル
-	CEffectManager::GetInstanse()->Particle(m_col);
+	CEffectManager::GetInstanse()->Particle(30.0f);
 }

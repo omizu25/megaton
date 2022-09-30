@@ -93,12 +93,6 @@ void CRanking::Init()
 
 		// 枠の設定
 		m_pMenu->SetFrame(D3DXVECTOR3(600.0f, (float)CApplication::SCREEN_HEIGHT, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
-
-		// テクスチャの設定
-		m_pMenu->SetTexture(ESelect::SELECT_NORMAL, CTexture::LABEL_Normal);
-		m_pMenu->SetTexture(ESelect::SELECT_SAFETY_AREA, CTexture::LABEL_SafetyArea);
-		m_pMenu->SetTexture(ESelect::SELECT_DANGER_AREA, CTexture::LABEL_DangerArea);
-		m_pMenu->SetTexture(ESelect::SELECT_END, CTexture::LABEL_End_Ranking);
 	}
 }
 
@@ -213,5 +207,5 @@ void CRanking::Effect()
 	m_partCnt++;
 
 	// パーティクル
-	CEffectManager::GetInstanse()->Particle(m_col);
+	CEffectManager::GetInstanse()->Particle(30.0f);
 }

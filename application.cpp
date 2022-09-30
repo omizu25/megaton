@@ -135,12 +135,6 @@ HRESULT CApplication::Init(HINSTANCE hInstance, HWND hWnd)
 	// 生成
 	CObject::Create();
 
-	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	D3DXVECTOR3 size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);;
-	
-	// 背景の生成
-	CBG::Create(pos, size);
-
 	if (m_pMode == nullptr)
 	{// nullチェック
 		m_pMode = CMode::Create(CMode::MODE_TITLE);

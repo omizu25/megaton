@@ -20,7 +20,7 @@ class CBG : public CObject3D
 {
 	/* «Ã“Iƒƒ“ƒoŠÖ”« */
 public:
-	static CBG* Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& size);	// ¶¬
+	static CBG* Create(CTexture::ELabel texture);	// ¶¬
 
 	/* «ƒƒ“ƒoŠÖ”« */
 public:

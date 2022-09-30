@@ -44,7 +44,7 @@ void CTutorial::Init()
 	CObject2D* pTutorial = CObject2D::Create();
 	pTutorial->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f));
 	pTutorial->SetSize(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f));
-	pTutorial->SetTexture(CTexture::LABEL_TutorialNormal);
+	pTutorial->SetTexture(CTexture::LABEL_Tutorial);
 	pTutorial->SetFade(0.0f);
 }
 
