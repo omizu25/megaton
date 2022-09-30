@@ -102,7 +102,7 @@ void CRanking::Init()
 	}
 
 	{// ç°âÒÇÃÉXÉRÉA
-		D3DXVECTOR3 size = D3DXVECTOR3(CRankingUI::STD_WIDTH * 1.3f, CRankingUI::STD_HEIGHT * 1.3f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(CRankingUI::STD_WIDTH * 2.0f, CRankingUI::STD_HEIGHT * 2.0f, 0.0f);
 		int score = CRankingUI::Get(-1);
 		int digit = Digit(score);
 		float center = (digit * (size.x * 0.5f)) + (((digit - 1) / 3) * (size.x * 0.25f));
