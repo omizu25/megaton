@@ -88,6 +88,7 @@
     <ClInclude Include="time.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="tutorial.h" />
+    <ClInclude Include="twin_circle.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
