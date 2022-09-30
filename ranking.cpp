@@ -16,6 +16,7 @@
 #include "rankingUI.h"
 #include "menu.h"
 #include "object2D.h"
+#include "bg.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -47,6 +48,10 @@ void CRanking::Init()
 	m_time = 0;
 	m_partCnt = 0;
 	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+	{// 背景
+		CBG::Create(CTexture::LABEL_NightSky);
+	}
 
 	// ランキングの設定
 	CRankingUI::Set(-1);
@@ -207,5 +212,5 @@ void CRanking::Effect()
 	m_partCnt++;
 
 	// パーティクル
-	CEffectManager::GetInstanse()->Particle(30.0f);
+	CEffectManager::GetInstanse()->Particle();
 }

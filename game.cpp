@@ -25,6 +25,7 @@
 #include "gauge2D.h"
 #include "pendulum.h"
 #include "twin_circle.h"
+#include "bg.h"
 
 #include <assert.h>
 
@@ -62,6 +63,10 @@ CGame::~CGame()
 void CGame::Init()
 {
 	m_time = 0;
+
+	{// îwåi
+		CBG::Create(CTexture::LABEL_GameBg);
+	}
 
 	{// É^ÉCÉÄ
 		float width = (float)CApplication::SCREEN_WIDTH * 0.5f + (CTime::STD_WIDTH * 2.25f);

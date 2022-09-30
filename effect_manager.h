@@ -48,7 +48,8 @@ public:
 
 public:
 	void Release();	// 解放
-	void Particle(float move);	// パーティクル
+	void Particle();						// パーティクル
+	void Fireworks(float move);				// 花火
 	void Player(const D3DXVECTOR3& pos);	// プレイヤー
 	void Explosion(const D3DXVECTOR3& pos);	// 爆発
 	void Bullet(const D3DXVECTOR3& pos);	// 弾

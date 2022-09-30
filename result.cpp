@@ -18,6 +18,7 @@
 #include "score.h"
 #include "menu.h"
 #include "sound.h"
+#include "bg.h"
 #include <assert.h>
 
 //--------------------------------------------------
@@ -47,6 +48,10 @@ CResult::~CResult()
 void CResult::Init()
 {
 	m_time = 0;
+
+	{// ”wŒi
+		CBG::Create(CTexture::LABEL_NightSky);
+	}
 
 	{// ƒ‰ƒ“ƒLƒ“ƒO‚Ì”wŒi
 		float width = (float)CApplication::SCREEN_WIDTH * 0.75f;
@@ -251,5 +256,5 @@ void CResult::Effect()
 	col.b = FloatRandom(1.0f, 0.0f);
 
 	// ƒp[ƒeƒBƒNƒ‹
-	CEffectManager::GetInstanse()->Particle(30.0f);
+	CEffectManager::GetInstanse()->Particle();
 }

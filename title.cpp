@@ -46,7 +46,7 @@ void CTitle::Init()
 	m_partCnt = 0;
 
 	{// 背景
-		//CBG::Create(CTexture::LABEL_BG);
+		CBG::Create(CTexture::LABEL_NightSky);
 	}
 
 	CObject2D* pTitle = CObject2D::Create();
@@ -63,7 +63,7 @@ void CTitle::Init()
 		m_pMenu = CMenu::Create(pos, size, 1, 0.0f, true, false);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(0, CTexture::LABEL_Title);
+		m_pMenu->SetTexture(0, CTexture::LABEL_NightSky);
 	}
 
 	// BGM
@@ -103,31 +103,13 @@ void CTitle::Update()
 	Effect();
 
 	// 選択
-	CTitle::ESelect select = (ESelect)m_pMenu->Select();
+	int select = m_pMenu->Select();
 
 	if (m_time >= CMode::FADE_TIME)
 	{// フェード時間
-		switch (select)
+		if (select != -1)
 		{
-		case ESelect::SELECT_NONE:
-			break;
-
-		case ESelect::SELECT_NORMAL:
-		case ESelect::SELECT_SAFETY_AREA:
-		case ESelect::SELECT_DANGER_AREA:
-			Change(MODE_TUTORIAL);
-			return;
-			break;
-
-		case ESelect::SELECT_RANKING:
-			Change(MODE_RANKING);
-			return;
-			break;
-
-		case ESelect::SELECT_MAX:
-		default:
-			assert(false);
-			break;
+			Change(MODE_GAME);
 		}
 	}
 
@@ -154,11 +136,11 @@ void CTitle::Effect()
 {
 	m_time++;
 
-	if ((m_time % 120) != 0)
+	if ((m_time % 30) != 0)
 	{// 一定間隔待ち
 		return;
 	}
 
 	// パーティクル
-	CEffectManager::GetInstanse()->Particle(30.0f);
+	CEffectManager::GetInstanse()->Particle();
 }
