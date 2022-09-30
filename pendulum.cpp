@@ -17,6 +17,7 @@
 #include "renderer.h"
 #include "application.h"
 #include "utility.h"
+#include "sound.h"
 
 //=============================================================================
 // インスタンス生成
@@ -104,7 +105,7 @@ void CPendulum::Init()
 	pPendulum->SetTexture(CTexture::LABEL_Pien_White);
 
 	// ディスタンスの最大値
-	m_fMaxDistance = 1.0f / 0.05f * 10.0f;
+	m_fMaxDistance = 400.0f;
 }
 
 //=============================================================================
@@ -114,6 +115,7 @@ void CPendulum::Init()
 //=============================================================================
 void CPendulum::Uninit()
 {
+	CApplication::GetInstanse()->GetSound()->Stop(CSound::LABEL_SE_Gauge_Halfway);
 	pTarget->Release();
 	pPendulum->Release();
 }
@@ -143,7 +145,7 @@ void CPendulum::Update()
 
 		if (m_fDistance < 0.0f)
 		{
-			m_fDistance *= -1;
+			m_fDistance = 0.0f;
 		}
 
 		pPendulum->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
@@ -151,6 +153,7 @@ void CPendulum::Update()
 		if (CollisionCircle(pPendulum->GetPos(), pPendulum->GetSize().x * 0.5f, pTarget->GetPos(), pTarget->GetSize().x * 0.5f))
 		{
 			pPendulum->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+			CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Gauge_Halfway);
 		}
 	}
 	else if (!m_bAction)

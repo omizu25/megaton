@@ -22,6 +22,7 @@
 #include "mode.h"
 #include "game.h"
 #include "score.h"
+#include "sound.h"
 #include "input.h"
 #include "locus.h"
 
@@ -169,6 +170,12 @@ void CGageManager::Update()
 			// サイズの更新
 			m_nCntGage += 2;
 			m_pGauge2D->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+
+			if (m_nCntGage == 10)
+			{
+				CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Gauge);
+			}
+
 			if (m_nCntGage >= 95)
 			{
 				m_pGauge2D->SetCol(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
@@ -183,6 +190,7 @@ void CGageManager::Update()
 		if (m_bKeyPress)
 		{
 			m_nCntFrame++;
+
 			if (m_nCntFrame >= MAX_FRAME)
 			{
 				m_nCntFrame = 0;
@@ -209,6 +217,7 @@ void CGageManager::Update()
 		{
 			m_pPendulum->SetAction(false);
 			m_nCntFrame++;
+
 			if (m_nCntFrame >= MAX_FRAME)
 			{
 				m_nCntFrame = 0;
@@ -247,10 +256,12 @@ void CGageManager::Update()
 
 				m_type = MAX_GAGETYPE;
 				CLocus *pLocus = CLocus::Create();
-				pLocus->SetPos(D3DXVECTOR3(-50.0f, -200.0f, 0.0f));				pLocus->SetLife(600);
+				pLocus->SetPos(D3DXVECTOR3(-50.0f, -200.0f, 0.0f));
+				pLocus->SetLife(600);
 				pLocus->SetSpeed(15.0f);
 				pLocus->SetWaveSpeed(0.4f);
 				pLocus->SetWaveWidth(15.0f);
+				CApplication::GetInstanse()->GetSound()->Play(CSound::LABEL_SE_Explosion_Before);
 			}
 		}
 		break;
