@@ -25,6 +25,7 @@
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effect_manager.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="fade.cpp" />
     <ClCompile Include="gage_manager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gauge2D.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="effect.h" />
     <ClInclude Include="effect_manager.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="fade.h" />
     <ClInclude Include="gage_manager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gauge2D.h" />
