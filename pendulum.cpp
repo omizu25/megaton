@@ -95,11 +95,13 @@ void CPendulum::Init()
 	pTarget->SetPos(m_pos);
 	pTarget->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 	pTarget->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+	pTarget->SetTexture(CTexture::LABEL_Target);
 
 	// 振り子オブジェクトの設定
 	pPendulum = CObject2D::Create();
 	pPendulum->SetPos(D3DXVECTOR3(m_pos.x, m_pos.y, m_pos.z));
 	pPendulum->SetSize(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
+	pPendulum->SetTexture(CTexture::LABEL_Pien_White);
 
 	// ディスタンスの最大値
 	m_fMaxDistance = 1.0f / 0.05f * 20.0f;
