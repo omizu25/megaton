@@ -137,7 +137,7 @@ void CPendulum::Update()
 		pPendulum->SetPos(pos);
 
 		// ディスタンスの設定
-		m_fDistance = pTarget->GetPos().x - pPendulum->GetPos().x;
+		m_fDistance = pTarget->GetPos().y - pPendulum->GetPos().y;
 
 		if (m_fDistance < 0.0f)
 		{

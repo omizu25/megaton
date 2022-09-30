@@ -48,6 +48,7 @@ public:
 	void Draw() override;	// 描画
 
 public:
+	void SetSize(const D3DXVECTOR2& size);	// サイズの設定
 	const D3DXVECTOR3& GetPos() const;	// 位置の取得
 	const D3DXCOLOR& GetCol() const;	// 色の取得
 	const D3DXVECTOR3& GetMove() const;	// 移動量の取得
