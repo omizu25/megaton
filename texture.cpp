@@ -19,7 +19,7 @@
 //==================================================
 const char* CTexture::FILE_NAME[] =
 {// テクスチャのパス
-	"data/TEXTURE/effect.jpg",	// エフェクト
+	"data/TEXTURE/effect.png",	// エフェクト
 	"data/TEXTURE/bg000.png",	// 背景
 
 	/* ↓テキスト↓ */
